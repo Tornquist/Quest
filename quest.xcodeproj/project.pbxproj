@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D8DF88AC1EC0A26F00A227AE /* quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8DF88AC1EC0A26F00A227AE /* NavQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8DF88B11EC0A26F00A227AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D8DF88B41EC0A26F00A227AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		D8DF88AD1EC0A26F00A227AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8DF88AC1EC0A26F00A227AE /* quest.app */,
+				D8DF88AC1EC0A26F00A227AE /* NavQuest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,7 +81,7 @@
 			);
 			name = quest;
 			productName = quest;
-			productReference = D8DF88AC1EC0A26F00A227AE /* quest.app */;
+			productReference = D8DF88AC1EC0A26F00A227AE /* NavQuest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -265,7 +265,7 @@
 				INFOPLIST_FILE = quest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nathantornquist.quest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NavQuest;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -278,7 +278,7 @@
 				INFOPLIST_FILE = quest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nathantornquist.quest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NavQuest;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
