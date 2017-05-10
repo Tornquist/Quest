@@ -49,7 +49,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fub-sL-qNE">
-                                <rect key="frame" x="16" y="20" width="42" height="20.5"/>
+                                <rect key="frame" x="16" y="25.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1U8-UO-Xok">
+                                <rect key="frame" x="310" y="20" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ssn-Lk-QH9"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3f-Mz-jaR">
+                                <rect key="frame" x="192" y="25" width="110" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,17 +69,22 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fub-sL-qNE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="4F5-7o-Otv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1U8-UO-Xok" secondAttribute="trailing" id="7rJ-V0-rig"/>
                             <constraint firstAttribute="leadingMargin" secondItem="fub-sL-qNE" secondAttribute="leading" id="Aed-hq-wSm"/>
                             <constraint firstItem="Eog-s8-nmH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jif-us-W6W"/>
+                            <constraint firstItem="1U8-UO-Xok" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="MDM-SV-UcP"/>
+                            <constraint firstItem="1U8-UO-Xok" firstAttribute="leading" secondItem="z3f-Mz-jaR" secondAttribute="trailing" constant="8" id="ZZ8-kl-HAk"/>
+                            <constraint firstItem="fub-sL-qNE" firstAttribute="centerY" secondItem="z3f-Mz-jaR" secondAttribute="centerY" id="iK3-QA-ndZ"/>
                             <constraint firstItem="Eog-s8-nmH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k1r-ze-zEP"/>
                             <constraint firstAttribute="leadingMargin" secondItem="jLK-gW-cbQ" secondAttribute="leading" id="q5D-d8-OjS"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jLK-gW-cbQ" secondAttribute="bottom" constant="8" id="qqM-gG-PCM"/>
+                            <constraint firstItem="z3f-Mz-jaR" firstAttribute="centerY" secondItem="1U8-UO-Xok" secondAttribute="centerY" id="uks-Pa-pCy"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="accuracyLabel" destination="fub-sL-qNE" id="ymQ-Ox-JCA"/>
                         <outlet property="angleLabel" destination="jLK-gW-cbQ" id="akv-Ra-XgM"/>
+                        <outlet property="directionSwitch" destination="1U8-UO-Xok" id="y4b-i3-Cqj"/>
                         <outlet property="lineView" destination="Eog-s8-nmH" id="4Ej-YM-Y84"/>
                     </connections>
                 </viewController>
