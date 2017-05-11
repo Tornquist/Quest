@@ -46,6 +46,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.requestLocation()
+            locationManager.startUpdatingLocation()
         }
         
         if CLLocationManager.headingAvailable() {
@@ -76,18 +77,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateLine() {
-        self.angleLabel.text = "∠ North: \(self.currentHeading)\n∠ Destination: \(self.angleToDestination)"
-
         
-        var radians = degreesToRadians(self.currentHeading)
+        self.angleLabel.text = "∠ North: \(self.currentHeading)\n∠ Destination: \(self.angleToDestination)"
+        
+        var degrees = -self.currentHeading
+        
         if self.directionSwitch.isOn {
-            var tempAngle = (self.currentHeading - self.angleToDestination)
-            if tempAngle < 0 { tempAngle += 360 }
-            if tempAngle > 360 { tempAngle -= 360}
-            radians = degreesToRadians(tempAngle)
+            degrees = (self.angleToDestination - self.currentHeading)
         }
         
-        self.rotateLineTo(-radians)
+        while (degrees < 0) { degrees += 360 }
+        while (degrees > 360) { degrees -= 360 }
+        let radians = degreesToRadians(degrees)
+
+        self.rotateLineTo(radians)
     }
     
     func rotateLineTo(_ radians: Double) {
@@ -96,11 +99,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func getBearing(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) -> Double {
-        let lat1 = degreesToRadians(source.latitude)
-        let lon1 = degreesToRadians(source.longitude)
+        let lat1 = degreesToRadians(destination.latitude)
+        let lon1 = degreesToRadians(destination.longitude)
         
-        let lat2 = degreesToRadians(destination.latitude);
-        let lon2 = degreesToRadians(destination.longitude);
+        let lat2 = degreesToRadians(source.latitude);
+        let lon2 = degreesToRadians(source.longitude);
         
         let dLon = lon1 - lon2;
         
@@ -109,11 +112,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let radiansBearing = atan2(y, x);
         
         var degrees = radiansToDegrees(radiansBearing)
-        degrees -= 90 // Rotate 0 to north
-        if (degrees < 0) { degrees += 360 }
         
-        // Mirror
-        degrees = -1 * (degrees - 360)
+        if degrees < 0 { degrees += 360 }
+        if degrees > 360 {degrees -= 360 }
         
         return degrees
     }
