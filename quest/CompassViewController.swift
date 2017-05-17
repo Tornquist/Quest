@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CompassViewController.swift
 //  quest
 //
 //  Created by Nathan Tornquist on 5/8/17.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class CompassViewController: UIViewController, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
     
@@ -19,18 +19,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var currentDestination: CLLocationCoordinate2D!
     
-    @IBOutlet weak var directionSwitch: UISwitch!
-    
     var angleToDestination: Double = 0
     var currentHeading: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // The Bagel
-        let lat: Double = 41.937869
-        let long: Double = -87.644062
-        self.currentDestination = CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.count > 0 {
+        if locations.count > 0 && self.currentDestination != nil {
             self.angleToDestination = self.getBearing(from: locations[0].coordinate, to: self.currentDestination)
             self.updateLine()
         }
@@ -82,7 +75,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         var degrees = -self.currentHeading
         
-        if self.directionSwitch.isOn {
+        if self.currentDestination != nil {
             degrees = (self.angleToDestination - self.currentHeading)
         }
         
@@ -121,9 +114,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func degreesToRadians(_ degrees: Double) -> Double { return degrees * Double.pi / 180.0 }
     func radiansToDegrees(_ radians: Double) -> Double { return radians * 180.0 / Double.pi }
-    
-    @IBAction func switchToggled(_ sender: Any) {
-        self.updateLine()
-    }
 }
 
