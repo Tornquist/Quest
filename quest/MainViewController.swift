@@ -36,6 +36,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        let tempMapButton = UIBarButtonItem(title: "Map", style: .plain, target: self, action: #selector(showMapPressed(sender:)))
+        self.navigationItem.rightBarButtonItem = tempMapButton
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,5 +60,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         compass.currentDestination = destinationCoords[indexPath.row]
         compass.navigationItem.title = destinations[indexPath.row]
         self.navigationController?.pushViewController(compass, animated: true)
+    }
+    
+    func showMapPressed(sender: UIBarButtonItem) {
+        let map = UIStoryboard(name: "Map", bundle: nil).instantiateViewController(withIdentifier: "mapView") as! MapViewController
+        self.navigationController?.pushViewController(map, animated: true)
     }
 }
