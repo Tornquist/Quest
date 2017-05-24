@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lBj-8S-Oee">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Landing View Controller-->
+        <scene sceneID="dVG-1E-mce">
+            <objects>
+                <viewController storyboardIdentifier="landingView" id="lBj-8S-Oee" customClass="LandingViewController" customModule="NavQuest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IXb-Lh-U85"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ma7-xI-A8h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bkr-ye-K0Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg3-ul-afs">
+                                <rect key="frame" x="-0.5" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ZRQ-3N-qVK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueButtonPressed:" destination="lBj-8S-Oee" eventType="touchUpInside" id="Z2U-Fd-rPR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQz-h7-XnY">
+                                <rect key="frame" x="32" y="80" width="311" height="107.5"/>
+                                <string key="text">NavQuest is a GPS and camera based scavenger hunt. It requires camera and location access to function. To play the game, please press continue and then grant access.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GQz-h7-XnY" firstAttribute="leading" secondItem="Bkr-ye-K0Z" secondAttribute="leadingMargin" constant="16" id="1vB-0c-FQc"/>
+                            <constraint firstItem="GQz-h7-XnY" firstAttribute="top" secondItem="IXb-Lh-U85" secondAttribute="bottom" constant="60" id="5wD-ef-SLs"/>
+                            <constraint firstItem="Yg3-ul-afs" firstAttribute="width" secondItem="Bkr-ye-K0Z" secondAttribute="width" id="ElK-lL-Qtn"/>
+                            <constraint firstItem="GQz-h7-XnY" firstAttribute="centerX" secondItem="Bkr-ye-K0Z" secondAttribute="centerX" id="IW9-6y-7O0"/>
+                            <constraint firstItem="Ma7-xI-A8h" firstAttribute="top" secondItem="Yg3-ul-afs" secondAttribute="bottom" id="Kff-tS-6BE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GQz-h7-XnY" secondAttribute="trailing" constant="16" id="bkU-46-Wc9"/>
+                            <constraint firstItem="Yg3-ul-afs" firstAttribute="centerX" secondItem="Bkr-ye-K0Z" secondAttribute="centerX" id="cxq-9Z-cbn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="Yg3-ul-afs" id="rHF-Q0-mta"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="THw-C3-ENT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="129"/>
+        </scene>
+    </scenes>
+</document>
