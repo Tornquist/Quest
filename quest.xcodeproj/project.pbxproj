@@ -10,6 +10,8 @@
 		D861D5801ECDCDA600AE888A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861D57F1ECDCDA600AE888A /* MapViewController.swift */; };
 		D861D5821ECDCDB400AE888A /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D861D5811ECDCDB400AE888A /* Map.storyboard */; };
 		D861D5851ECDCF4700AE888A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D861D5841ECDCF4700AE888A /* MapKit.framework */; };
+		D861D5881ED5B15600AE888A /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D861D5871ED5B15600AE888A /* Camera.storyboard */; };
+		D861D58A1ED5B16000AE888A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861D5891ED5B16000AE888A /* CameraViewController.swift */; };
 		D89F36A11ECC83F000FCC3D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D89F36A01ECC83F000FCC3D8 /* Main.storyboard */; };
 		D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */; };
 		D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */; };
@@ -23,6 +25,8 @@
 		D861D57F1ECDCDA600AE888A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D861D5811ECDCDB400AE888A /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		D861D5841ECDCF4700AE888A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D861D5871ED5B15600AE888A /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		D861D5891ED5B16000AE888A /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D89F36A01ECC83F000FCC3D8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D8DF88AC1EC0A26F00A227AE /* NavQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +74,7 @@
 				D861D57C1ECDCD0700AE888A /* Main */,
 				D861D57B1ECDCCFF00AE888A /* Compass */,
 				D861D57E1ECDCD1B00AE888A /* Map */,
+				D861D5861ED5B14B00AE888A /* Camera */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -89,6 +94,15 @@
 				D861D5841ECDCF4700AE888A /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D861D5861ED5B14B00AE888A /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D861D5871ED5B15600AE888A /* Camera.storyboard */,
+				D861D5891ED5B16000AE888A /* CameraViewController.swift */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		D8DF88A31EC0A26F00A227AE = {
@@ -181,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8DF88BA1EC0A26F00A227AE /* LaunchScreen.storyboard in Resources */,
+				D861D5881ED5B15600AE888A /* Camera.storyboard in Resources */,
 				D8DF88B71EC0A26F00A227AE /* Assets.xcassets in Resources */,
 				D861D5821ECDCDB400AE888A /* Map.storyboard in Resources */,
 				D8DF88B51EC0A26F00A227AE /* Compass.storyboard in Resources */,
@@ -196,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */,
+				D861D58A1ED5B16000AE888A /* CameraViewController.swift in Sources */,
 				D8DF88B21EC0A26F00A227AE /* CompassViewController.swift in Sources */,
 				D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */,
 				D861D5801ECDCDA600AE888A /* MapViewController.swift in Sources */,

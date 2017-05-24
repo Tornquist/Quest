@@ -37,6 +37,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        let tempCameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(showCameraPressed(sender:)))
+        self.navigationItem.leftBarButtonItem = tempCameraButton
+        
         let tempMapButton = UIBarButtonItem(title: "Map", style: .plain, target: self, action: #selector(showMapPressed(sender:)))
         self.navigationItem.rightBarButtonItem = tempMapButton
     }
@@ -60,6 +63,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         compass.currentDestination = destinationCoords[indexPath.row]
         compass.navigationItem.title = destinations[indexPath.row]
         self.navigationController?.pushViewController(compass, animated: true)
+    }
+    
+    func showCameraPressed(sender: UIBarButtonItem) {
+        let camera = UIStoryboard(name: "Camera", bundle: nil).instantiateViewController(withIdentifier: "cameraView") as! CameraViewController
+        self.navigationController?.pushViewController(camera, animated: true)
     }
     
     func showMapPressed(sender: UIBarButtonItem) {
