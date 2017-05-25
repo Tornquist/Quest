@@ -57,6 +57,7 @@
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="Yg3-ul-afs" id="rHF-Q0-mta"/>
+                        <outlet property="descriptionLabel" destination="GQz-h7-XnY" id="CXm-cB-wfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THw-C3-ENT" userLabel="First Responder" sceneMemberID="firstResponder"/>
