@@ -7,71 +7,123 @@
 //
 
 import UIKit
+import MapKit
 import CoreLocation
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController, MKMapViewDelegate {
     
-    let destinations: [String] = [
-        "North",
-        "The Bagel",
-        "Reside on Barry",
-        "Wellington Brown Line",
-        "Industrious"
-    ]
+    @IBOutlet weak var containerView: UIView!
     
-    let destinationCoords: [CLLocationCoordinate2D?] = [
-        nil,
-        CLLocationCoordinate2D(latitude: 41.937869, longitude: -87.644062),
-        CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-        CLLocationCoordinate2D(latitude: 41.936223, longitude: -87.653409),
-        CLLocationCoordinate2D(latitude: 41.892566, longitude: -87.636641),
-    ]
+    @IBOutlet weak var infoPanel: UIView!
+    @IBOutlet weak var infoBackgroundTint: UIView!
+    @IBOutlet weak var infoHeader: UIView!
+    @IBOutlet weak var infoContent: UIView!
+    @IBOutlet weak var infoSeparator: UIView!
+    @IBOutlet weak var infoPositionConstraint: NSLayoutConstraint!
+    var infoShown = false
     
-    @IBOutlet weak var tableView: UITableView!
+    var mapView: MKMapView!
+    var firstMapUpdate = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Navigation Options"
+        self.configureIntro()
+        self.configureOverlay()
+    }
+    
+    func configureIntro() {
+        self.showMapView()
+        self.infoShown = false
+        self.updateInfoPosition()
+        self.updateInfoBackgroundColor()
+    }
+    
+    @IBAction func headerTapped(_ sender: Any) {
+        self.infoShown = !self.infoShown
+        UIView.animate(withDuration: 0.3, animations: {
+            self.updateInfoPosition()
+            self.updateInfoBackgroundColor()
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func configureOverlay() {
+        self.infoHeader.backgroundColor = .clear
+        self.infoSeparator.backgroundColor = .black
+        self.infoContent.backgroundColor = .clear
+        self.infoBackgroundTint.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 242.0/255.0, alpha: 0.3)
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        let corners = UIRectCorner.topLeft.union(UIRectCorner.topRight)
+        let radius = 16
         
-        let tempCameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(showCameraPressed(sender:)))
-        self.navigationItem.leftBarButtonItem = tempCameraButton
+        let maskPath = UIBezierPath(roundedRect: self.infoPanel.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         
-        let tempMapButton = UIBarButtonItem(title: "Map", style: .plain, target: self, action: #selector(showMapPressed(sender:)))
-        self.navigationItem.rightBarButtonItem = tempMapButton
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = self.infoPanel.bounds;
+        maskLayer.path = maskPath.cgPath;
+        
+        let borderLayer = CAShapeLayer()
+        borderLayer.frame = self.infoPanel.bounds;
+        borderLayer.path = maskPath.cgPath;
+        borderLayer.lineWidth = 0.5
+        borderLayer.strokeColor = UIColor.black.cgColor
+        borderLayer.fillColor = UIColor.clear.cgColor
+        
+        self.infoPanel.layer.mask = maskLayer;
+        self.infoPanel.layer.masksToBounds = true
+        self.infoPanel.layer.addSublayer(borderLayer)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func updateInfoPosition() {
+        self.infoPositionConstraint.constant = self.infoShown ? self.view.frame.height : 0
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return destinations.count
+    func updateInfoBackgroundColor() {
+        self.infoBackgroundTint.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 242.0/255.0, alpha: self.infoShown ? 0.6 : 0.3)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = destinations[indexPath.row]
-        return cell
+    func setContainerTo(contentView: UIView) {
+        self.containerView.subviews.forEach({ $0.removeFromSuperview() })
+        
+        let width = NSLayoutConstraint(item: contentView, attribute: .width, relatedBy: .equal, toItem: self.containerView, attribute: .width, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: self.containerView, attribute: .height, multiplier: 1, constant: 0)
+        let centerX = NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self.containerView, attribute: .centerX, multiplier: 1, constant: 0)
+        let centerY = NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self.containerView, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        self.containerView.addSubview(contentView)
+        
+        self.containerView.addConstraints([width, height, centerX, centerY])
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let compass = UIStoryboard(name: "Compass", bundle: nil).instantiateViewController(withIdentifier: "compassView") as! CompassViewController
-        compass.currentDestination = destinationCoords[indexPath.row]
-        compass.navigationItem.title = destinations[indexPath.row]
-        self.navigationController?.pushViewController(compass, animated: true)
+    func showMapView() {
+        if mapView == nil {
+            self.mapView = MKMapView()
+            self.mapView.showsPointsOfInterest = false
+            self.mapView.showsTraffic = false
+            self.mapView.showsBuildings = false
+            self.mapView.showsUserLocation = true
+            
+            self.mapView.delegate = self
+        }
+        
+        self.setContainerTo(contentView: self.mapView)
     }
     
-    func showCameraPressed(sender: UIBarButtonItem) {
-        let camera = UIStoryboard(name: "Camera", bundle: nil).instantiateViewController(withIdentifier: "cameraView") as! CameraViewController
-        self.navigationController?.pushViewController(camera, animated: true)
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        if self.firstMapUpdate {
+            self.centerMap()
+            self.firstMapUpdate = false
+        }
     }
     
-    func showMapPressed(sender: UIBarButtonItem) {
-        let map = UIStoryboard(name: "Map", bundle: nil).instantiateViewController(withIdentifier: "mapView") as! MapViewController
-        self.navigationController?.pushViewController(map, animated: true)
+    func centerMap() {
+        var mapRegion = MKCoordinateRegion()
+        mapRegion.center = self.mapView.userLocation.coordinate
+        mapRegion.span.latitudeDelta = 0.02
+        mapRegion.span.longitudeDelta = 0.02
+        
+        self.mapView.setRegion(mapRegion, animated: true)
     }
 }
