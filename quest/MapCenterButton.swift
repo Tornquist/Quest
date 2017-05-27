@@ -70,8 +70,8 @@ class MapCenterButton: UIView {
     // MARK: - View Configuration
     
     func configureTheme() {
-        self.backgroundColor = UIColor.clear
-        self.view.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
+        self.view.backgroundColor = .clear
         
         self.containerView.backgroundColor = .clear
         self.containerView.layer.cornerRadius = 8

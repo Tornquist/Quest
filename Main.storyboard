@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,6 +24,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWg-i2-c52" userLabel="Map View" customClass="MapView" customModule="NavQuest" customModuleProvider="target">
                                 <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="213-g2-0AM" customClass="CompassView" customModule="NavQuest" customModuleProvider="target">
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="333.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtF-7F-cqG" userLabel="Separator">
@@ -59,44 +62,23 @@
                                     <constraint firstItem="DqE-Li-bBt" firstAttribute="centerX" secondItem="43n-7Q-isI" secondAttribute="centerX" id="yZ2-E3-Ck2"/>
                                 </constraints>
                             </view>
-                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7J-uv-bi2">
-                                <rect key="frame" x="0.0" y="-0.5" width="375" height="333.5"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YqL-Df-ckm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="directionArrow" translatesAutoresizingMaskIntoConstraints="NO" id="RSI-Wg-RaD">
-                                            <rect key="frame" x="103.5" y="83" width="167" height="167"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="RSI-Wg-RaD" secondAttribute="height" multiplier="1:1" id="lxQ-4D-Nur"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="RSI-Wg-RaD" firstAttribute="centerX" secondItem="YqL-Df-ckm" secondAttribute="centerX" id="IUZ-76-tIb"/>
-                                        <constraint firstItem="RSI-Wg-RaD" firstAttribute="centerY" secondItem="YqL-Df-ckm" secondAttribute="centerY" id="LNa-41-ynI"/>
-                                        <constraint firstItem="RSI-Wg-RaD" firstAttribute="height" secondItem="YqL-Df-ckm" secondAttribute="height" multiplier="0.5" id="ugy-B5-LnK"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="height" secondItem="7bn-Fe-jS8" secondAttribute="height" id="21J-Y3-560"/>
-                            <constraint firstItem="Z7J-uv-bi2" firstAttribute="height" secondItem="l1I-jx-XrE" secondAttribute="height" multiplier="0.5" id="2Rt-lo-Q1O"/>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="width" secondItem="7bn-Fe-jS8" secondAttribute="width" id="3eS-Ea-Wyg"/>
                             <constraint firstItem="XtF-7F-cqG" firstAttribute="width" secondItem="7bn-Fe-jS8" secondAttribute="width" id="7L4-5p-LcF"/>
+                            <constraint firstItem="213-g2-0AM" firstAttribute="centerX" secondItem="l1I-jx-XrE" secondAttribute="centerX" id="7Pa-jJ-sr2"/>
                             <constraint firstItem="SWg-i2-c52" firstAttribute="centerX" secondItem="l1I-jx-XrE" secondAttribute="centerX" id="B4h-Qi-AFP"/>
-                            <constraint firstItem="Z7J-uv-bi2" firstAttribute="width" secondItem="l1I-jx-XrE" secondAttribute="width" id="DPC-X1-z4P"/>
+                            <constraint firstItem="213-g2-0AM" firstAttribute="height" secondItem="l1I-jx-XrE" secondAttribute="height" multiplier="0.5" id="BFb-TJ-W0Y"/>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="centerY" secondItem="7bn-Fe-jS8" secondAttribute="centerY" id="Dlh-ow-4BX"/>
                             <constraint firstItem="SWg-i2-c52" firstAttribute="height" secondItem="l1I-jx-XrE" secondAttribute="height" id="F45-4k-Szr"/>
                             <constraint firstItem="SWg-i2-c52" firstAttribute="width" secondItem="l1I-jx-XrE" secondAttribute="width" id="ONB-DA-5Ln"/>
                             <constraint firstItem="7bn-Fe-jS8" firstAttribute="centerX" secondItem="l1I-jx-XrE" secondAttribute="centerX" id="SzB-PQ-AVW"/>
                             <constraint firstItem="XtF-7F-cqG" firstAttribute="centerX" secondItem="7bn-Fe-jS8" secondAttribute="centerX" id="UQd-bv-RaN"/>
                             <constraint firstItem="7bn-Fe-jS8" firstAttribute="width" secondItem="l1I-jx-XrE" secondAttribute="width" id="Vy9-d5-SGL"/>
-                            <constraint firstItem="Z7J-uv-bi2" firstAttribute="centerX" secondItem="l1I-jx-XrE" secondAttribute="centerX" id="XbW-Zc-G3L"/>
-                            <constraint firstItem="XtF-7F-cqG" firstAttribute="top" secondItem="Z7J-uv-bi2" secondAttribute="bottom" id="YdR-uO-qbU"/>
+                            <constraint firstItem="213-g2-0AM" firstAttribute="width" secondItem="l1I-jx-XrE" secondAttribute="width" id="cir-bZ-Bw3"/>
+                            <constraint firstItem="XtF-7F-cqG" firstAttribute="top" secondItem="213-g2-0AM" secondAttribute="bottom" id="ckq-dC-GCu"/>
                             <constraint firstItem="SWg-i2-c52" firstAttribute="centerY" secondItem="l1I-jx-XrE" secondAttribute="centerY" id="f7D-pQ-cN4"/>
                             <constraint firstItem="NYs-aQ-V93" firstAttribute="top" secondItem="7bn-Fe-jS8" secondAttribute="bottom" id="fmM-DE-eRp"/>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="centerX" secondItem="7bn-Fe-jS8" secondAttribute="centerX" id="kYQ-UB-kww"/>
@@ -106,8 +88,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zFd-90-n1z"/>
                     <connections>
-                        <outlet property="compassArrow" destination="RSI-Wg-RaD" id="fZs-Ld-R46"/>
-                        <outlet property="compassView" destination="Z7J-uv-bi2" id="Tvs-ca-O05"/>
+                        <outlet property="compassView" destination="213-g2-0AM" id="2oq-g8-CfU"/>
                         <outlet property="mapView" destination="SWg-i2-c52" id="dlh-Dr-olQ"/>
                     </connections>
                 </viewController>
@@ -116,7 +97,4 @@
             <point key="canvasLocation" x="-842.39999999999998" y="359.37031484257875"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="directionArrow" width="512" height="512"/>
-    </resources>
 </document>

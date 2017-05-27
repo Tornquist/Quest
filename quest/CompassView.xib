@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompassView" customModule="NavQuest" customModuleProvider="target">
+            <connections>
+                <outlet property="arrow" destination="Bz1-Do-948" id="htg-0L-gWf"/>
+                <outlet property="visualEffect" destination="rWt-y1-b2f" id="o7s-Qh-K2f"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="294" height="311"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWt-y1-b2f">
+                    <rect key="frame" x="0.0" y="0.0" width="294" height="311"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ukT-BK-Iqb">
+                        <rect key="frame" x="0.0" y="0.0" width="294" height="311"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="directionArrow" translatesAutoresizingMaskIntoConstraints="NO" id="Bz1-Do-948">
+                    <rect key="frame" x="73.5" y="82" width="147" height="147"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Bz1-Do-948" secondAttribute="height" multiplier="1:1" id="EHF-uv-JQH"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Bz1-Do-948" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1bM-X0-0sh"/>
+                <constraint firstItem="Bz1-Do-948" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="MJw-x8-KVP"/>
+                <constraint firstItem="Bz1-Do-948" firstAttribute="width" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="UJH-7m-2Ca"/>
+                <constraint firstItem="Bz1-Do-948" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" priority="999" id="Xwi-yP-Gf0"/>
+                <constraint firstItem="Bz1-Do-948" firstAttribute="height" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="Y1U-u6-YTf"/>
+                <constraint firstItem="rWt-y1-b2f" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="ZLE-o9-BJi"/>
+                <constraint firstItem="rWt-y1-b2f" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aP9-lC-SXv"/>
+                <constraint firstItem="rWt-y1-b2f" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iT8-19-Rsn"/>
+                <constraint firstItem="rWt-y1-b2f" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="wLf-4N-WJ5"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-6" y="186.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="directionArrow" width="512" height="512"/>
+    </resources>
+</document>

@@ -67,8 +67,8 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     // MARK: - View Configuration
     
     func configureTheme() {
-        self.backgroundColor = UIColor.clear
-        self.view.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
+        self.view.backgroundColor = .clear
         
         self.mapView.showsPointsOfInterest = false
         self.mapView.showsTraffic = false
