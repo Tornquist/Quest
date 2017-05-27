@@ -10,105 +10,82 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MainViewController: UIViewController, MKMapViewDelegate {
+class MainViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var compassView: UIVisualEffectView!
+    @IBOutlet weak var compassArrow: UIImageView!
+    let locationManager = CLLocationManager()
+    var angleToDestination: Double = 0
+    var currentHeading: Double = 0
+    var currentDestination: CLLocationCoordinate2D!
     
-    @IBOutlet weak var infoPanel: UIView!
-    @IBOutlet weak var infoBackgroundTint: UIView!
-    @IBOutlet weak var infoHeader: UIView!
-    @IBOutlet weak var infoContent: UIView!
-    @IBOutlet weak var infoSeparator: UIView!
-    @IBOutlet weak var infoPositionConstraint: NSLayoutConstraint!
-    var infoShown = false
+    @IBOutlet weak var centerButtonContainer: UIView!
+    @IBOutlet weak var centerButton: UIButton!
     
-    var mapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     var firstMapUpdate = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.configureView()
         self.configureIntro()
-        self.configureOverlay()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.requestLocationAccess()
+    }
+    
+    func requestLocationAccess() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.requestLocation()
+            locationManager.startUpdatingLocation()
+        }
+        
+        if CLLocationManager.headingAvailable() {
+            locationManager.headingFilter = 1
+            locationManager.startUpdatingHeading()
+        }
+    }
+    
+    func configureView() {
+        self.configureMapView()
+        self.configureCenterButton()
+    }
+    
+    func configureCenterButton() {
+        self.centerButtonContainer.backgroundColor = .clear
+        self.centerButtonContainer.layer.cornerRadius = 8
+        self.centerButtonContainer.layer.borderWidth = 0.5
+        self.centerButtonContainer.layer.borderColor = UIColor.black.cgColor
+        self.centerButtonContainer.clipsToBounds = true
+    }
+
+    func configureMapView() {
+        let topConstraint = NSLayoutConstraint(item: self.mapView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0)
+        self.view.addConstraint(topConstraint)
+        
+        self.mapView.showsPointsOfInterest = false
+        self.mapView.showsTraffic = false
+        self.mapView.showsBuildings = false
+        self.mapView.showsUserLocation = true
+        self.mapView.isPitchEnabled = false
+        
+        let mapDragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDragMap(gestureRecognizer:)))
+        mapDragRecognizer.delegate = self
+        self.mapView.addGestureRecognizer(mapDragRecognizer)
+        
+        self.mapView.delegate = self
     }
     
     func configureIntro() {
-        self.showMapView()
-        self.infoShown = false
-        self.updateInfoPosition()
-        self.updateInfoBackgroundColor()
-    }
-    
-    @IBAction func headerTapped(_ sender: Any) {
-        self.infoShown = !self.infoShown
-        UIView.animate(withDuration: 0.3, animations: {
-            self.updateInfoPosition()
-            self.updateInfoBackgroundColor()
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    func configureOverlay() {
-        self.infoHeader.backgroundColor = .clear
-        self.infoSeparator.backgroundColor = .black
-        self.infoContent.backgroundColor = .clear
-        self.infoBackgroundTint.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 242.0/255.0, alpha: 0.3)
-        
-        let corners = UIRectCorner.topLeft.union(UIRectCorner.topRight)
-        let radius = 16
-        
-        let maskPath = UIBezierPath(roundedRect: self.infoPanel.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = self.infoPanel.bounds;
-        maskLayer.path = maskPath.cgPath;
-        
-        let borderLayer = CAShapeLayer()
-        borderLayer.frame = self.infoPanel.bounds;
-        borderLayer.path = maskPath.cgPath;
-        borderLayer.lineWidth = 0.5
-        borderLayer.strokeColor = UIColor.black.cgColor
-        borderLayer.fillColor = UIColor.clear.cgColor
-        
-        self.infoPanel.layer.mask = maskLayer;
-        self.infoPanel.layer.masksToBounds = true
-        self.infoPanel.layer.addSublayer(borderLayer)
-    }
-    
-    func updateInfoPosition() {
-        self.infoPositionConstraint.constant = self.infoShown ? self.view.frame.height : 0
-    }
-    
-    func updateInfoBackgroundColor() {
-        self.infoBackgroundTint.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 242.0/255.0, alpha: self.infoShown ? 0.6 : 0.3)
-    }
-    
-    func setContainerTo(contentView: UIView) {
-        self.containerView.subviews.forEach({ $0.removeFromSuperview() })
-        
-        let width = NSLayoutConstraint(item: contentView, attribute: .width, relatedBy: .equal, toItem: self.containerView, attribute: .width, multiplier: 1, constant: 0)
-        let height = NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: self.containerView, attribute: .height, multiplier: 1, constant: 0)
-        let centerX = NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self.containerView, attribute: .centerX, multiplier: 1, constant: 0)
-        let centerY = NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self.containerView, attribute: .centerY, multiplier: 1, constant: 0)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        self.containerView.addSubview(contentView)
-        
-        self.containerView.addConstraints([width, height, centerX, centerY])
-    }
-    
-    func showMapView() {
-        if mapView == nil {
-            self.mapView = MKMapView()
-            self.mapView.showsPointsOfInterest = false
-            self.mapView.showsTraffic = false
-            self.mapView.showsBuildings = false
-            self.mapView.showsUserLocation = true
-            
-            self.mapView.delegate = self
-        }
-        
-        self.setContainerTo(contentView: self.mapView)
+        // nothing special yet
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -118,12 +95,121 @@ class MainViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    func didDragMap(gestureRecognizer: UIPanGestureRecognizer) {
+        self.centerButton.tintColor = .white
+        self.centerButton.isEnabled = true
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    @IBAction func centerButtonPressed(_ sender: Any) {
+        self.centerMap()
+    }
+    
+    @IBAction func toggleCompassPressed(_ sender: Any) {
+        self.compassView.isHidden = !self.compassView.isHidden
+    }
+    
     func centerMap() {
         var mapRegion = MKCoordinateRegion()
         mapRegion.center = self.mapView.userLocation.coordinate
         mapRegion.span.latitudeDelta = 0.02
         mapRegion.span.longitudeDelta = 0.02
         
-        self.mapView.setRegion(mapRegion, animated: true)
+        let mapRect = self.mapRect(region: mapRegion)
+        self.mapView.setVisibleMapRect(mapRect, animated: true)
+        self.mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsetsMake(0, 0, self.view.bounds.height/2, 0), animated: true)
+        
+        self.centerButton.tintColor = .lightGray
+        self.centerButton.isEnabled = false
     }
+    
+    func mapRect(region: MKCoordinateRegion) -> MKMapRect {
+        let topLeft = CLLocationCoordinate2D(
+            latitude: region.center.latitude + (region.span.latitudeDelta/2.0),
+            longitude: region.center.longitude - (region.span.longitudeDelta/2.0)
+        )
+        
+        let bottomRight = CLLocationCoordinate2D(
+            latitude: region.center.latitude - (region.span.latitudeDelta/2.0),
+            longitude: region.center.longitude + (region.span.longitudeDelta/2.0)
+        )
+        
+        let topLeftMapPoint = MKMapPointForCoordinate(topLeft)
+        let bottomRightMapPoint = MKMapPointForCoordinate(bottomRight)
+        
+        let origin = MKMapPoint(x: topLeftMapPoint.x,
+                                y: topLeftMapPoint.y)
+        let size = MKMapSize(width: fabs(bottomRightMapPoint.x - topLeftMapPoint.x),
+                             height: fabs(bottomRightMapPoint.y - topLeftMapPoint.y))
+        
+        return MKMapRect(origin: origin, size: size)
+    }
+    
+    // MARK: - Compass
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.count > 0 && self.currentDestination != nil {
+            self.angleToDestination = self.getBearing(from: locations[0].coordinate, to: self.currentDestination)
+            self.updateArrow()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // No action
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        guard newHeading.headingAccuracy > 0 else {
+            return
+        }
+        
+        self.currentHeading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
+        self.updateArrow()
+    }
+    
+    func updateArrow() {
+        var degrees = -self.currentHeading
+        
+        if self.currentDestination != nil {
+            degrees = (self.angleToDestination - self.currentHeading)
+        }
+        
+        while (degrees < 0) { degrees += 360 }
+        while (degrees > 360) { degrees -= 360 }
+        let radians = degreesToRadians(degrees)
+        
+        self.rotateArrowTo(radians)
+    }
+    
+    func rotateArrowTo(_ radians: Double) {
+        self.compassArrow.transform = CGAffineTransform.identity
+        self.compassArrow.transform = CGAffineTransform(rotationAngle: CGFloat(radians))
+    }
+    
+    func getBearing(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) -> Double {
+        let lat1 = degreesToRadians(destination.latitude)
+        let lon1 = degreesToRadians(destination.longitude)
+        
+        let lat2 = degreesToRadians(source.latitude);
+        let lon2 = degreesToRadians(source.longitude);
+        
+        let dLon = lon1 - lon2;
+        
+        let y = sin(dLon) * cos(lat1);
+        let x = cos(lat2) * sin(lat1) - sin(lat2) * cos(lat1) * cos(dLon);
+        let radiansBearing = atan2(y, x);
+        
+        var degrees = radiansToDegrees(radiansBearing)
+        
+        if degrees < 0 { degrees += 360 }
+        if degrees > 360 {degrees -= 360 }
+        
+        return degrees
+    }
+    
+    func degreesToRadians(_ degrees: Double) -> Double { return degrees * Double.pi / 180.0 }
+    func radiansToDegrees(_ radians: Double) -> Double { return radians * 180.0 / Double.pi }
 }
