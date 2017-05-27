@@ -18,6 +18,8 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     @IBOutlet weak var centerButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var centerButtonRightConstraint: NSLayoutConstraint!
     
+    var quests: [QuestProtocol] = []
+    
     var firstMapUpdate = true
     
     var visualInsets: UIEdgeInsets = .zero {
@@ -117,8 +119,8 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     func centerMap() {
         var mapRegion = MKCoordinateRegion()
         mapRegion.center = self.mapView.userLocation.coordinate
-        mapRegion.span.latitudeDelta = 0.02
-        mapRegion.span.longitudeDelta = 0.02
+        mapRegion.span.latitudeDelta = 0.01
+        mapRegion.span.longitudeDelta = 0.01
         
         let mapRect = self.mapRect(region: mapRegion)
         self.mapView.setVisibleMapRect(mapRect, animated: true)
@@ -147,5 +149,25 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
                              height: fabs(bottomRightMapPoint.y - topLeftMapPoint.y))
         
         return MKMapRect(origin: origin, size: size)
+    }
+    
+    // MARK: - Overlays
+    
+    func showAvailable(quests: [QuestProtocol]) {
+        self.quests = quests
+        self.mapView.removeOverlays(self.mapView.overlays)
+        
+        self.quests.forEach({
+            let start = $0.startingPosition()
+            let radius = $0.startingRadius()
+            self.mapView.add(MKCircle(center: start, radius: radius))
+        })
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.strokeColor = .clear
+        circleRenderer.fillColor = UIColor.red.withAlphaComponent(0.4)
+        return circleRenderer
     }
 }
