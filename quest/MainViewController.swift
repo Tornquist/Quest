@@ -18,6 +18,12 @@ enum MainViewStyle: Int {
 
 protocol MainViewControllerInterface: class {
     func set(viewStyle: MainViewStyle)
+    
+    func showMessage(_ text: String)
+    func hideMessage()
+    
+    func showButton(withTitle title: String)
+    func hideButton()
 }
 
 class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewControllerInterface {
@@ -26,6 +32,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     @IBOutlet weak var compassView: CompassView!
     @IBOutlet weak var cameraView: CameraView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    
+    @IBOutlet weak var stackView: UIStackView!
+    var messageLabel: UILabel!
+    var startButton: UIButton!
     
     var questManager: QuestManager!
     
@@ -59,6 +69,27 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     func configureView() {
         self.mapView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
+        
+        self.messageLabel = UILabel()
+        self.messageLabel.text = "Walk to a quest marker to begin"
+        self.messageLabel.numberOfLines = 0
+        self.messageLabel.textColor = .white
+        self.messageLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightMedium)
+        self.messageLabel.textAlignment = .center
+        self.stackView.addArrangedSubview(self.messageLabel)
+        self.messageLabel.isHidden = false
+        
+        self.startButton = UIButton()
+        self.startButton.backgroundColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        self.startButton.setTitle("START QUEST", for: .normal)
+        self.startButton.setTitleColor(.white, for: .normal)
+        self.startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        let heightConstraint = NSLayoutConstraint(item: self.startButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+        heightConstraint.priority = 999
+        self.startButton.addConstraint(heightConstraint)
+        self.startButton.layer.cornerRadius = 8
+        self.stackView.addArrangedSubview(self.startButton)
+        self.startButton.isHidden = true
     }
     
     func refreshView() {
@@ -100,5 +131,21 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     func set(viewStyle: MainViewStyle) {
         self.viewStyle = viewStyle
         self.refreshView()
+    }
+    
+    func showMessage(_ text: String) {
+        self.messageLabel.isHidden = false
+        self.messageLabel.text = text
+    }
+    func hideMessage() {
+        self.messageLabel.isHidden = true
+    }
+    
+    func showButton(withTitle title: String) {
+        self.startButton.isHidden = false
+        self.startButton.setTitle(title, for: .normal)
+    }
+    func hideButton() {
+        self.startButton.isHidden = true
     }
 }
