@@ -19,6 +19,7 @@ class MapCenterButton: UIView {
     
     weak var delegate: MapCenterButtonDelegate?
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var button: UIButton!
     
@@ -48,6 +49,7 @@ class MapCenterButton: UIView {
         }
         
         self.configureNib()
+        self.configureTheme()
     }
     
     func configureNib() {
@@ -71,11 +73,11 @@ class MapCenterButton: UIView {
         self.backgroundColor = UIColor.clear
         self.view.backgroundColor = UIColor.clear
         
-        self.backgroundColor = .clear
-        self.layer.cornerRadius = 8
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.black.cgColor
-        self.clipsToBounds = true
+        self.containerView.backgroundColor = .clear
+        self.containerView.layer.cornerRadius = 8
+        self.containerView.layer.borderWidth = 0.5
+        self.containerView.layer.borderColor = UIColor.black.cgColor
+        self.containerView.clipsToBounds = true
     }
     
     @IBAction func buttonPressed(_ sender: Any) {

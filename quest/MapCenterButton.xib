@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapCenterButton" customModule="NavQuest" customModuleProvider="target">
             <connections>
                 <outlet property="button" destination="eTC-gu-8KH" id="1Je-if-pXR"/>
+                <outlet property="containerView" destination="0En-I4-XIX" id="MBP-8o-ZzE"/>
                 <outlet property="visualEffectView" destination="85n-Jl-139" id="nIG-d6-k9n"/>
             </connections>
         </placeholder>
@@ -21,35 +22,47 @@
             <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85n-Jl-139">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0En-I4-XIX" userLabel="ContainerView">
                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ci5-5h-IHo">
-                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <blurEffect style="dark"/>
-                </visualEffectView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTC-gu-8KH">
-                    <rect key="frame" x="5" y="5" width="22" height="22"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85n-Jl-139">
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ci5-5h-IHo">
+                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <blurEffect style="dark"/>
+                        </visualEffectView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTC-gu-8KH">
+                            <rect key="frame" x="5" y="5" width="22" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="22" id="K2I-l1-ZOR"/>
+                                <constraint firstAttribute="width" secondItem="eTC-gu-8KH" secondAttribute="height" multiplier="1:1" id="gc5-oe-MSG"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="crosshairs"/>
+                            <connections>
+                                <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="CZN-pU-w4U"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="22" id="K2I-l1-ZOR"/>
-                        <constraint firstAttribute="width" secondItem="eTC-gu-8KH" secondAttribute="height" multiplier="1:1" id="gc5-oe-MSG"/>
+                        <constraint firstItem="85n-Jl-139" firstAttribute="centerY" secondItem="0En-I4-XIX" secondAttribute="centerY" id="Ckt-SU-4c0"/>
+                        <constraint firstItem="eTC-gu-8KH" firstAttribute="centerY" secondItem="85n-Jl-139" secondAttribute="centerY" id="HT8-Zo-D9W"/>
+                        <constraint firstItem="85n-Jl-139" firstAttribute="centerX" secondItem="0En-I4-XIX" secondAttribute="centerX" id="KRh-Jy-BQz"/>
+                        <constraint firstItem="85n-Jl-139" firstAttribute="width" secondItem="0En-I4-XIX" secondAttribute="width" id="QLx-1a-JWJ"/>
+                        <constraint firstItem="eTC-gu-8KH" firstAttribute="centerX" secondItem="85n-Jl-139" secondAttribute="centerX" id="bny-Xb-oe6"/>
+                        <constraint firstItem="85n-Jl-139" firstAttribute="height" secondItem="0En-I4-XIX" secondAttribute="height" id="wat-Jy-mFB"/>
                     </constraints>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" image="crosshairs"/>
-                    <connections>
-                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="CZN-pU-w4U"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="eTC-gu-8KH" firstAttribute="centerX" secondItem="85n-Jl-139" secondAttribute="centerX" id="HoF-fi-79A"/>
-                <constraint firstItem="85n-Jl-139" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="YYm-Wc-wii"/>
-                <constraint firstItem="85n-Jl-139" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="aNX-xD-VaH"/>
-                <constraint firstItem="eTC-gu-8KH" firstAttribute="centerY" secondItem="85n-Jl-139" secondAttribute="centerY" id="ed1-Ch-Eht"/>
-                <constraint firstItem="85n-Jl-139" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="roJ-Vk-xdV"/>
-                <constraint firstItem="85n-Jl-139" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="sEo-K1-gnZ"/>
+                <constraint firstItem="0En-I4-XIX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="JcL-LK-Y7B"/>
+                <constraint firstItem="0En-I4-XIX" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="MlT-FH-OX8"/>
+                <constraint firstItem="0En-I4-XIX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bbN-TO-4jR"/>
+                <constraint firstItem="0En-I4-XIX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="de8-hu-yFu"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
