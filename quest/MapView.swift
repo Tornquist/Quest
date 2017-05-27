@@ -11,6 +11,7 @@ import MapKit
 
 protocol MapViewInterface: class {
     func showAvailable(quests: [QuestProtocol])
+    func refreshAvailable()
 }
 
 class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenterButtonDelegate, MapViewInterface {
@@ -25,6 +26,8 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     @IBOutlet weak var centerButtonRightConstraint: NSLayoutConstraint!
     
     var quests: [QuestProtocol] = []
+    var questOverlays: [MKCircle] = []
+    var canStartQuest: [Bool] = []
     
     var firstMapUpdate = true
     
@@ -161,19 +164,63 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     
     func showAvailable(quests: [QuestProtocol]) {
         self.quests = quests
+        self.questOverlays.removeAll()
+        self.canStartQuest.removeAll()
+        
         self.mapView.removeOverlays(self.mapView.overlays)
         
-        self.quests.forEach({
-            let start = $0.startingPosition()
-            let radius = $0.startingRadius()
-            self.mapView.add(MKCircle(center: start, radius: radius))
-        })
+        self.quests.forEach { (quest) in
+            let circle = overlayFor(quest: quest)
+            
+            self.canStartQuest.append(quest.canStart())
+            self.questOverlays.append(circle)
+            
+            self.mapView.add(circle)
+        }
+    }
+    
+    func refreshAvailable() {
+        for (index, quest) in self.quests.enumerated() {
+            let canStart = quest.canStart()
+            let needsUpdate = canStart != self.canStartQuest[index]
+            self.canStartQuest[index] = canStart
+            
+            guard !needsUpdate else { return }
+            
+            let circle = overlayFor(quest: quest)
+            
+            let overlay = self.questOverlays[index]
+            self.mapView.remove(overlay)
+            self.mapView.add(circle)
+            
+            self.questOverlays[index] = circle
+        }
+    }
+    
+    func overlayFor(quest: QuestProtocol) -> MKCircle {
+        let start = quest.startingPosition()
+        let radius = quest.startingRadius()
+        let circle = MKCircle(center: start, radius: radius)
+        circle.title = quest.sku()
+        
+        return circle
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard overlay is MKCircle else {
+            return MKOverlayRenderer(overlay: overlay)
+        }
+        
+        let title = (overlay.title ?? "") ?? ""
+        let index = self.quests.index { (quest) -> Bool in
+            return title == quest.sku()
+        }
+        
+        let canStart = index != nil && index! < self.canStartQuest.count ? self.canStartQuest[index!] : false
+        
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.strokeColor = .clear
-        circleRenderer.fillColor = UIColor.red.withAlphaComponent(0.4)
+        circleRenderer.fillColor = canStart ? UIColor.green.withAlphaComponent(0.4) : UIColor.red.withAlphaComponent(0.4)
         return circleRenderer
     }
 }

@@ -10,6 +10,11 @@ import Foundation
 import CoreLocation
 
 protocol QuestProtocol: class {
+    func sku() -> String
+    
     func startingPosition() -> CLLocationCoordinate2D
     func startingRadius() -> CLLocationDistance
+    
+    func canStart() -> Bool
+    func locationDidChange(to location: CLLocationCoordinate2D)
 }

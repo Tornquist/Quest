@@ -42,6 +42,15 @@ class QuestManager: QuestManagerDelegate {
     // MARK: - QuestManagerDelegate
     
     func locationDidChange(to location: CLLocationCoordinate2D) {
-        print("new location: \(location)")
+        if self.currentQuest == nil {
+            self.refreshAvailable(with: location)
+        }
+    }
+    
+    // MARK: - Quest Management
+    
+    func refreshAvailable(with location: CLLocationCoordinate2D) {
+        self.availableQuests.forEach({ $0.locationDidChange(to: location) })
+        self.mapInterface?.refreshAvailable()
     }
 }
