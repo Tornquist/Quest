@@ -9,9 +9,14 @@
 import UIKit
 import AVFoundation
 
-class CameraView: UIView {
+protocol CameraViewInterface: class {
+    
+}
+
+class CameraView: UIView, CameraViewInterface {
     
     var view: UIView!
+    weak var manager: QuestManagerDelegate?
     
     var session: AVCaptureSession!
     var device: AVCaptureDevice!

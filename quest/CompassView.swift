@@ -9,9 +9,14 @@
 import UIKit
 import CoreLocation
 
-class CompassView: UIView, CLLocationManagerDelegate {
+protocol CompassViewInterface: class {
+    
+}
+
+class CompassView: UIView, CLLocationManagerDelegate, CompassViewInterface {
     
     var view: UIView!
+    weak var manager: QuestManagerDelegate?
     
     @IBOutlet weak var visualEffect: UIVisualEffectView!
     @IBOutlet weak var arrow: UIImageView!
@@ -103,7 +108,13 @@ class CompassView: UIView, CLLocationManagerDelegate {
     // MARK: - Compass
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.count > 0 && self.currentDestination != nil {
+        guard locations.count > 0 else {
+            return
+        }
+        
+        self.manager?.locationDidChange(to: locations[0].coordinate)
+        
+        if self.currentDestination != nil {
             self.angleToDestination = self.getBearing(from: locations[0].coordinate, to: self.currentDestination)
             self.updateArrow()
         }

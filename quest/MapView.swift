@@ -9,9 +9,15 @@
 import UIKit
 import MapKit
 
-class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenterButtonDelegate {
+protocol MapViewInterface: class {
+    func showAvailable(quests: [QuestProtocol])
+}
+
+class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenterButtonDelegate, MapViewInterface {
     
     var view: UIView!
+    weak var manager: QuestManagerDelegate?
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerButton: MapCenterButton!
     
