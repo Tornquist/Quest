@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D861D5801ECDCDA600AE888A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861D57F1ECDCDA600AE888A /* MapViewController.swift */; };
-		D861D5821ECDCDB400AE888A /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D861D5811ECDCDB400AE888A /* Map.storyboard */; };
 		D861D5851ECDCF4700AE888A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D861D5841ECDCF4700AE888A /* MapKit.framework */; };
-		D861D5881ED5B15600AE888A /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D861D5871ED5B15600AE888A /* Camera.storyboard */; };
-		D861D58A1ED5B16000AE888A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861D5891ED5B16000AE888A /* CameraViewController.swift */; };
 		D861D58D1ED5B4BD00AE888A /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D861D58C1ED5B4BD00AE888A /* Landing.storyboard */; };
 		D861D58F1ED5B4C700AE888A /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861D58E1ED5B4C700AE888A /* LandingViewController.swift */; };
 		D86F27961ED9166C00BED8B5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27951ED9166C00BED8B5 /* MapView.swift */; };
@@ -25,18 +21,12 @@
 		D89F36A11ECC83F000FCC3D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D89F36A01ECC83F000FCC3D8 /* Main.storyboard */; };
 		D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */; };
 		D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */; };
-		D8DF88B21EC0A26F00A227AE /* CompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF88B11EC0A26F00A227AE /* CompassViewController.swift */; };
-		D8DF88B51EC0A26F00A227AE /* Compass.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8DF88B31EC0A26F00A227AE /* Compass.storyboard */; };
 		D8DF88B71EC0A26F00A227AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8DF88B61EC0A26F00A227AE /* Assets.xcassets */; };
 		D8DF88BA1EC0A26F00A227AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8DF88B81EC0A26F00A227AE /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D861D57F1ECDCDA600AE888A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		D861D5811ECDCDB400AE888A /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		D861D5841ECDCF4700AE888A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D861D5871ED5B15600AE888A /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
-		D861D5891ED5B16000AE888A /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D861D58C1ED5B4BD00AE888A /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		D861D58E1ED5B4C700AE888A /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		D86F27951ED9166C00BED8B5 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -51,8 +41,6 @@
 		D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D8DF88AC1EC0A26F00A227AE /* NavQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D8DF88B11EC0A26F00A227AE /* CompassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
-		D8DF88B41EC0A26F00A227AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Compass.storyboard; sourceTree = "<group>"; };
 		D8DF88B61EC0A26F00A227AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8DF88B91EC0A26F00A227AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8DF88BB1EC0A26F00A227AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,44 +58,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D861D57B1ECDCCFF00AE888A /* Compass */ = {
-			isa = PBXGroup;
-			children = (
-				D8DF88B31EC0A26F00A227AE /* Compass.storyboard */,
-				D8DF88B11EC0A26F00A227AE /* CompassViewController.swift */,
-			);
-			name = Compass;
-			sourceTree = "<group>";
-		};
 		D861D57C1ECDCD0700AE888A /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				D89F36A01ECC83F000FCC3D8 /* Main.storyboard */,
 				D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */,
-				D86F27941ED9166200BED8B5 /* Components */,
 			);
 			name = Main;
 			sourceTree = "<group>";
 		};
-		D861D57D1ECDCD0B00AE888A /* Views */ = {
+		D861D57D1ECDCD0B00AE888A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D861D58B1ED5B4B200AE888A /* Landing */,
 				D861D57C1ECDCD0700AE888A /* Main */,
-				D861D57B1ECDCCFF00AE888A /* Compass */,
-				D861D57E1ECDCD1B00AE888A /* Map */,
-				D861D5861ED5B14B00AE888A /* Camera */,
 			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		D861D57E1ECDCD1B00AE888A /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				D861D5811ECDCDB400AE888A /* Map.storyboard */,
-				D861D57F1ECDCDA600AE888A /* MapViewController.swift */,
-			);
-			name = Map;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		D861D5831ECDCF4700AE888A /* Frameworks */ = {
@@ -116,15 +82,6 @@
 				D861D5841ECDCF4700AE888A /* MapKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D861D5861ED5B14B00AE888A /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				D861D5871ED5B15600AE888A /* Camera.storyboard */,
-				D861D5891ED5B16000AE888A /* CameraViewController.swift */,
-			);
-			name = Camera;
 			sourceTree = "<group>";
 		};
 		D861D58B1ED5B4B200AE888A /* Landing */ = {
@@ -196,7 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */,
-				D861D57D1ECDCD0B00AE888A /* Views */,
+				D861D57D1ECDCD0B00AE888A /* View Controllers */,
+				D86F27941ED9166200BED8B5 /* Components */,
 				D8DF88B61EC0A26F00A227AE /* Assets.xcassets */,
 				D8DF88B81EC0A26F00A227AE /* LaunchScreen.storyboard */,
 				D8DF88BB1EC0A26F00A227AE /* Info.plist */,
@@ -265,15 +223,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8DF88BA1EC0A26F00A227AE /* LaunchScreen.storyboard in Resources */,
-				D861D5881ED5B15600AE888A /* Camera.storyboard in Resources */,
 				D8DF88B71EC0A26F00A227AE /* Assets.xcassets in Resources */,
 				D86F279C1ED9175800BED8B5 /* MapCenterButton.xib in Resources */,
 				D861D58D1ED5B4BD00AE888A /* Landing.storyboard in Resources */,
 				D86F27A21ED9217D00BED8B5 /* CompassView.xib in Resources */,
-				D861D5821ECDCDB400AE888A /* Map.storyboard in Resources */,
 				D86F27A71ED924E600BED8B5 /* CameraView.xib in Resources */,
 				D86F27981ED9168A00BED8B5 /* MapView.xib in Resources */,
-				D8DF88B51EC0A26F00A227AE /* Compass.storyboard in Resources */,
 				D89F36A11ECC83F000FCC3D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,28 +242,17 @@
 			files = (
 				D86F27961ED9166C00BED8B5 /* MapView.swift in Sources */,
 				D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */,
-				D861D58A1ED5B16000AE888A /* CameraViewController.swift in Sources */,
 				D86F27A51ED924DE00BED8B5 /* CameraView.swift in Sources */,
 				D86F279A1ED9174F00BED8B5 /* MapCenterButton.swift in Sources */,
-				D8DF88B21EC0A26F00A227AE /* CompassViewController.swift in Sources */,
 				D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */,
 				D86F27A01ED9217200BED8B5 /* CompassView.swift in Sources */,
 				D861D58F1ED5B4C700AE888A /* LandingViewController.swift in Sources */,
-				D861D5801ECDCDA600AE888A /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D8DF88B31EC0A26F00A227AE /* Compass.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8DF88B41EC0A26F00A227AE /* Base */,
-			);
-			name = Compass.storyboard;
-			sourceTree = "<group>";
-		};
 		D8DF88B81EC0A26F00A227AE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
