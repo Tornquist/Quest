@@ -20,6 +20,8 @@
 		D86F279C1ED9175800BED8B5 /* MapCenterButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86F279B1ED9175800BED8B5 /* MapCenterButton.xib */; };
 		D86F27A01ED9217200BED8B5 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F279F1ED9217200BED8B5 /* CompassView.swift */; };
 		D86F27A21ED9217D00BED8B5 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86F27A11ED9217D00BED8B5 /* CompassView.xib */; };
+		D86F27A51ED924DE00BED8B5 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27A41ED924DE00BED8B5 /* CameraView.swift */; };
+		D86F27A71ED924E600BED8B5 /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86F27A61ED924E600BED8B5 /* CameraView.xib */; };
 		D89F36A11ECC83F000FCC3D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D89F36A01ECC83F000FCC3D8 /* Main.storyboard */; };
 		D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */; };
 		D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */; };
@@ -43,6 +45,8 @@
 		D86F279B1ED9175800BED8B5 /* MapCenterButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapCenterButton.xib; sourceTree = "<group>"; };
 		D86F279F1ED9217200BED8B5 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		D86F27A11ED9217D00BED8B5 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
+		D86F27A41ED924DE00BED8B5 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		D86F27A61ED924E600BED8B5 /* CameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraView.xib; sourceTree = "<group>"; };
 		D89F36A01ECC83F000FCC3D8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D8DF88AC1EC0A26F00A227AE /* NavQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +139,7 @@
 		D86F27941ED9166200BED8B5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D86F27A31ED924CF00BED8B5 /* Camera */,
 				D86F279E1ED9216700BED8B5 /* Compass */,
 				D86F279D1ED9215700BED8B5 /* Map */,
 			);
@@ -159,6 +164,15 @@
 				D86F27A11ED9217D00BED8B5 /* CompassView.xib */,
 			);
 			name = Compass;
+			sourceTree = "<group>";
+		};
+		D86F27A31ED924CF00BED8B5 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D86F27A41ED924DE00BED8B5 /* CameraView.swift */,
+				D86F27A61ED924E600BED8B5 /* CameraView.xib */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		D8DF88A31EC0A26F00A227AE = {
@@ -257,6 +271,7 @@
 				D861D58D1ED5B4BD00AE888A /* Landing.storyboard in Resources */,
 				D86F27A21ED9217D00BED8B5 /* CompassView.xib in Resources */,
 				D861D5821ECDCDB400AE888A /* Map.storyboard in Resources */,
+				D86F27A71ED924E600BED8B5 /* CameraView.xib in Resources */,
 				D86F27981ED9168A00BED8B5 /* MapView.xib in Resources */,
 				D8DF88B51EC0A26F00A227AE /* Compass.storyboard in Resources */,
 				D89F36A11ECC83F000FCC3D8 /* Main.storyboard in Resources */,
@@ -273,6 +288,7 @@
 				D86F27961ED9166C00BED8B5 /* MapView.swift in Sources */,
 				D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */,
 				D861D58A1ED5B16000AE888A /* CameraViewController.swift in Sources */,
+				D86F27A51ED924DE00BED8B5 /* CameraView.swift in Sources */,
 				D86F279A1ED9174F00BED8B5 /* MapCenterButton.swift in Sources */,
 				D8DF88B21EC0A26F00A227AE /* CompassViewController.swift in Sources */,
 				D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */,

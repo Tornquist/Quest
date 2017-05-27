@@ -20,6 +20,8 @@ class CompassView: UIView, CLLocationManagerDelegate {
     var currentHeading: Double = 0
     var currentDestination: CLLocationCoordinate2D!
     
+    var locationRequested = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -67,20 +69,25 @@ class CompassView: UIView, CLLocationManagerDelegate {
     // MARK: - Exernal Managment
     
     func requestLocation() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        self.locationManager.delegate = self
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationRequested = true
     }
     
     func startUpdating() {
+        if !self.locationRequested {
+            self.requestLocation()
+        }
+        
         if CLLocationManager.locationServicesEnabled() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.requestLocation()
-            locationManager.startUpdatingLocation()
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.requestLocation()
+            self.locationManager.startUpdatingLocation()
         }
         
         if CLLocationManager.headingAvailable() {
-            locationManager.headingFilter = 1
-            locationManager.startUpdatingHeading()
+            self.locationManager.headingFilter = 1
+            self.locationManager.startUpdatingHeading()
         }
     }
     
