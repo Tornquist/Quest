@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapView" customModule="NavQuest" customModuleProvider="target">
+            <connections>
+                <outlet property="centerButton" destination="pVD-Xn-nio" id="Eoq-aO-Tku"/>
+                <outlet property="centerButtonBottomConstraint" destination="Gg2-v0-F08" id="YgF-D8-G99"/>
+                <outlet property="centerButtonRightConstraint" destination="g42-YZ-sR4" id="NOK-ZI-y4M"/>
+                <outlet property="mapView" destination="hWx-p2-p1U" id="cdK-Kf-hY2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MapView" customModule="NavQuest" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="321"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hWx-p2-p1U">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="321"/>
+                </mapView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVD-Xn-nio" customClass="MapCenterButton" customModule="NavQuest" customModuleProvider="target">
+                    <rect key="frame" x="352" y="273" width="32" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="pVD-Xn-nio" secondAttribute="height" multiplier="1:1" id="9Ma-Tx-rqD"/>
+                        <constraint firstAttribute="width" constant="32" id="Nt4-2Q-LW3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hWx-p2-p1U" secondAttribute="bottom" id="AYO-7s-Kdv"/>
+                <constraint firstItem="hWx-p2-p1U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ByY-q8-fLj"/>
+                <constraint firstAttribute="bottom" secondItem="pVD-Xn-nio" secondAttribute="bottom" constant="16" id="Gg2-v0-F08"/>
+                <constraint firstAttribute="trailing" secondItem="pVD-Xn-nio" secondAttribute="trailing" constant="16" id="g42-YZ-sR4"/>
+                <constraint firstAttribute="trailing" secondItem="hWx-p2-p1U" secondAttribute="trailing" id="wm0-BB-7zl"/>
+                <constraint firstItem="hWx-p2-p1U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yKC-EB-Sfc"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="48" y="226.5"/>
+        </view>
+    </objects>
+</document>

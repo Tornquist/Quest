@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MainViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var compassView: UIVisualEffectView!
     @IBOutlet weak var compassArrow: UIImageView!
@@ -19,11 +19,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
     var currentHeading: Double = 0
     var currentDestination: CLLocationCoordinate2D!
     
-    @IBOutlet weak var centerButtonContainer: UIView!
-    @IBOutlet weak var centerButton: UIButton!
-    
-    @IBOutlet weak var mapView: MKMapView!
-    var firstMapUpdate = true
+    @IBOutlet weak var mapView: MapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,97 +51,15 @@ class MainViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
     }
     
     func configureView() {
-        self.configureMapView()
-        self.configureCenterButton()
-    }
-    
-    func configureCenterButton() {
-        self.centerButtonContainer.backgroundColor = .clear
-        self.centerButtonContainer.layer.cornerRadius = 8
-        self.centerButtonContainer.layer.borderWidth = 0.5
-        self.centerButtonContainer.layer.borderColor = UIColor.black.cgColor
-        self.centerButtonContainer.clipsToBounds = true
-    }
-
-    func configureMapView() {
-        let topConstraint = NSLayoutConstraint(item: self.mapView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0)
-        self.view.addConstraint(topConstraint)
-        
-        self.mapView.showsPointsOfInterest = false
-        self.mapView.showsTraffic = false
-        self.mapView.showsBuildings = false
-        self.mapView.showsUserLocation = true
-        self.mapView.isPitchEnabled = false
-        
-        let mapDragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDragMap(gestureRecognizer:)))
-        mapDragRecognizer.delegate = self
-        self.mapView.addGestureRecognizer(mapDragRecognizer)
-        
-        self.mapView.delegate = self
+        self.mapView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
     }
     
     func configureIntro() {
         // nothing special yet
     }
     
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        if self.firstMapUpdate {
-            self.centerMap()
-            self.firstMapUpdate = false
-        }
-    }
-    
-    func didDragMap(gestureRecognizer: UIPanGestureRecognizer) {
-        self.centerButton.tintColor = .white
-        self.centerButton.isEnabled = true
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
-    @IBAction func centerButtonPressed(_ sender: Any) {
-        self.centerMap()
-    }
-    
     @IBAction func toggleCompassPressed(_ sender: Any) {
         self.compassView.isHidden = !self.compassView.isHidden
-    }
-    
-    func centerMap() {
-        var mapRegion = MKCoordinateRegion()
-        mapRegion.center = self.mapView.userLocation.coordinate
-        mapRegion.span.latitudeDelta = 0.02
-        mapRegion.span.longitudeDelta = 0.02
-        
-        let mapRect = self.mapRect(region: mapRegion)
-        self.mapView.setVisibleMapRect(mapRect, animated: true)
-        self.mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsetsMake(0, 0, self.view.bounds.height/2, 0), animated: true)
-        
-        self.centerButton.tintColor = .lightGray
-        self.centerButton.isEnabled = false
-    }
-    
-    func mapRect(region: MKCoordinateRegion) -> MKMapRect {
-        let topLeft = CLLocationCoordinate2D(
-            latitude: region.center.latitude + (region.span.latitudeDelta/2.0),
-            longitude: region.center.longitude - (region.span.longitudeDelta/2.0)
-        )
-        
-        let bottomRight = CLLocationCoordinate2D(
-            latitude: region.center.latitude - (region.span.latitudeDelta/2.0),
-            longitude: region.center.longitude + (region.span.longitudeDelta/2.0)
-        )
-        
-        let topLeftMapPoint = MKMapPointForCoordinate(topLeft)
-        let bottomRightMapPoint = MKMapPointForCoordinate(bottomRight)
-        
-        let origin = MKMapPoint(x: topLeftMapPoint.x,
-                                y: topLeftMapPoint.y)
-        let size = MKMapSize(width: fabs(bottomRightMapPoint.x - topLeftMapPoint.x),
-                             height: fabs(bottomRightMapPoint.y - topLeftMapPoint.y))
-        
-        return MKMapRect(origin: origin, size: size)
     }
     
     // MARK: - Compass
