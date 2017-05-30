@@ -79,8 +79,15 @@ class QuestManager: QuestManagerDelegate {
     
     func refreshViews() {
         if self.currentQuest != nil {
-            self.mainInterface?.showMessage("Active Quest: \(self.currentQuest.name())")
-            self.mainInterface?.hideButton()
+            let step = self.currentQuest.currentStep()
+            
+            guard step != nil else {
+                self.mainInterface?.showMessage("You win!")
+                self.mainInterface?.hideButton()
+                return
+            }
+
+            self.show(step: step!)
         } else if self.ableToStartQuest != nil {
             self.showStart(quest: self.ableToStartQuest)
         } else {
@@ -96,5 +103,22 @@ class QuestManager: QuestManagerDelegate {
     func showStart(quest: QuestProtocol) {
         self.mainInterface?.showMessage("Would you like to begin \"\(quest.name())\"?")
         self.mainInterface?.showButton(withTitle: "START QUEST")
+    }
+    
+    func show(step: QuestStep) {
+        switch step.type {
+        case .map:
+            self.mainInterface?.showMessage("Go to the location on the map")
+            self.mainInterface?.set(viewStyle: .map)
+            self.mainInterface?.hideButton()
+        case .compass:
+            self.mainInterface?.showMessage("Follow the compass")
+            self.mainInterface?.set(viewStyle: .compass)
+            self.mainInterface?.hideButton()
+        case .camera:
+            self.mainInterface?.showMessage("Use the camera to find clues")
+            self.mainInterface?.set(viewStyle: .camera)
+            self.mainInterface?.hideButton()
+        }
     }
 }

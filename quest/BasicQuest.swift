@@ -10,11 +10,25 @@ import Foundation
 import CoreLocation
 
 class BasicQuest: QuestProtocol {
+    
+    var step: QuestStep?
+    var steps: [QuestStep] = []
+    
+    init() {
+        steps = [
+            QuestStep(
+                type: .compass,
+                destination: CLLocationCoordinate2D(latitude: 41.937869, longitude: -87.644062),
+                radius: 60,
+                overlayName: nil)
+        ]
+    }
+    
 
     var ableToStart = false
     
     func start() {
-        
+        self.step = steps.first
     }
     
     func name() -> String {
@@ -27,7 +41,6 @@ class BasicQuest: QuestProtocol {
     
     func startingPosition() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386)
-//        return CLLocationCoordinate2D(latitude: 41.937869, longitude: -87.644062)
     }
     
     func startingRadius() -> CLLocationDistance {
@@ -48,5 +61,9 @@ class BasicQuest: QuestProtocol {
         let closeEnough = distance < self.startingRadius()
         
         self.ableToStart = closeEnough
+    }
+    
+    func currentStep() -> QuestStep? {
+        return self.step
     }
 }

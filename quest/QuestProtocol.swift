@@ -10,8 +10,6 @@ import Foundation
 import CoreLocation
 
 protocol QuestProtocol: class {
-    func start()
-    
     func name() -> String
     func sku() -> String
     
@@ -20,4 +18,7 @@ protocol QuestProtocol: class {
     
     func canStart() -> Bool
     func locationDidChange(to location: CLLocationCoordinate2D)
+    
+    func start()
+    func currentStep() -> QuestStep?
 }

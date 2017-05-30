@@ -21,6 +21,7 @@
 		D86F27AA1ED92B6600BED8B5 /* QuestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27A91ED92B6600BED8B5 /* QuestManager.swift */; };
 		D86F27AC1ED92B7400BED8B5 /* QuestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AB1ED92B7400BED8B5 /* QuestProtocol.swift */; };
 		D86F27AE1ED92B8C00BED8B5 /* BasicQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */; };
+		D86F27B01EDDA31A00BED8B5 /* QuestStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */; };
 		D89F36A11ECC83F000FCC3D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D89F36A01ECC83F000FCC3D8 /* Main.storyboard */; };
 		D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */; };
 		D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 		D86F27A91ED92B6600BED8B5 /* QuestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestManager.swift; sourceTree = "<group>"; };
 		D86F27AB1ED92B7400BED8B5 /* QuestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestProtocol.swift; sourceTree = "<group>"; };
 		D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicQuest.swift; sourceTree = "<group>"; };
+		D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestStep.swift; sourceTree = "<group>"; };
 		D89F36A01ECC83F000FCC3D8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D8DF88AC1EC0A26F00A227AE /* NavQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +146,7 @@
 				D86F27A91ED92B6600BED8B5 /* QuestManager.swift */,
 				D86F27AB1ED92B7400BED8B5 /* QuestProtocol.swift */,
 				D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */,
+				D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */,
 			);
 			name = Quests;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				D86F27961ED9166C00BED8B5 /* MapView.swift in Sources */,
 				D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */,
+				D86F27B01EDDA31A00BED8B5 /* QuestStep.swift in Sources */,
 				D86F27AA1ED92B6600BED8B5 /* QuestManager.swift in Sources */,
 				D86F27A51ED924DE00BED8B5 /* CameraView.swift in Sources */,
 				D86F27AC1ED92B7400BED8B5 /* QuestProtocol.swift in Sources */,
