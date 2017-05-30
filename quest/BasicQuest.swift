@@ -13,6 +13,10 @@ class BasicQuest: QuestProtocol {
 
     var ableToStart = false
     
+    func start() {
+        
+    }
+    
     func name() -> String {
         return "Basic Quest"
     }

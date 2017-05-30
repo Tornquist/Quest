@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 
 protocol QuestManagerDelegate: class {
+    func mainButtonPressed()
     func locationDidChange(to location: CLLocationCoordinate2D)
 }
 
@@ -24,7 +25,8 @@ class QuestManager: QuestManagerDelegate {
     
     // Internal Components
     
-    var currentQuest: QuestProtocol?
+    var currentQuest: QuestProtocol!
+    var ableToStartQuest: QuestProtocol!
     
     var availableQuests: [QuestProtocol] = []
     
@@ -49,14 +51,41 @@ class QuestManager: QuestManagerDelegate {
         }
     }
     
+    func mainButtonPressed() {
+        if self.currentQuest == nil && self.ableToStartQuest != nil {
+            self.startQuest(self.ableToStartQuest)
+        }
+    }
+    
     // MARK: - Quest Management
+    
+    func startQuest(_ quest: QuestProtocol) {
+        self.currentQuest = quest
+        self.ableToStartQuest = nil
+        
+        self.currentQuest.start()
+        self.refreshViews()
+    }
     
     func refreshAvailable(with location: CLLocationCoordinate2D) {
         self.availableQuests.forEach({ $0.locationDidChange(to: location) })
         self.mapInterface?.refreshAvailable()
         
         let ableToStart = self.availableQuests.filter { $0.canStart() }
-        (ableToStart.count > 0) ? self.showStart(quest: ableToStart[0]) : showFindQuest()
+        self.ableToStartQuest = (ableToStart.count > 0) ? ableToStart[0] : nil
+        
+        self.refreshViews()
+    }
+    
+    func refreshViews() {
+        if self.currentQuest != nil {
+            self.mainInterface?.showMessage("Active Quest: \(self.currentQuest.name())")
+            self.mainInterface?.hideButton()
+        } else if self.ableToStartQuest != nil {
+            self.showStart(quest: self.ableToStartQuest)
+        } else {
+            self.showFindQuest()
+        }
     }
     
     func showFindQuest() {

@@ -10,6 +10,8 @@ import Foundation
 import CoreLocation
 
 protocol QuestProtocol: class {
+    func start()
+    
     func name() -> String
     func sku() -> String
     

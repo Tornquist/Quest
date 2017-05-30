@@ -80,6 +80,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.messageLabel.isHidden = false
         
         self.startButton = UIButton()
+        self.startButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         self.startButton.backgroundColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
         self.startButton.setTitle("START QUEST", for: .normal)
         self.startButton.setTitleColor(.white, for: .normal)
@@ -106,6 +107,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     @IBAction func changedSegmentControl(_ sender: UISegmentedControl) {
         self.viewStyle = MainViewStyle.init(rawValue: sender.selectedSegmentIndex) ?? .map
         self.refreshView()
+    }
+    
+    func buttonPressed(_ sender: UIButton) {
+        if sender == self.startButton {
+            self.questManager.mainButtonPressed()
+        }
     }
     
     // MARK: - Quest Managment
