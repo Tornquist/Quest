@@ -24,6 +24,8 @@ protocol MainViewControllerInterface: class {
     
     func showButton(withTitle title: String)
     func hideButton()
+    
+    func quitButton(show: Bool)
 }
 
 class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewControllerInterface {
@@ -32,6 +34,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     @IBOutlet weak var compassView: CompassView!
     @IBOutlet weak var cameraView: CameraView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    
+    @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var stackView: UIStackView!
     var messageLabel: UILabel!
@@ -109,9 +113,19 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.refreshView()
     }
     
-    func buttonPressed(_ sender: UIButton) {
+    @IBAction func buttonPressed(_ sender: UIButton) {
         if sender == self.startButton {
             self.questManager.mainButtonPressed()
+        } else if sender == self.closeButton {
+            let alert = UIAlertController(title: "Would you like to abandon your current quest?", message: "All progress will be lost. You can only resume from the beginning.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes, Quit", style: .destructive, handler: { (_) in
+                self.questManager.quit()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
@@ -154,5 +168,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     }
     func hideButton() {
         self.startButton.isHidden = true
+    }
+    
+    func quitButton(show: Bool) {
+        self.closeButton.isHidden = !show
     }
 }

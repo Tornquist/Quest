@@ -13,6 +13,7 @@ protocol QuestManagerDelegate: class {
     func mainButtonPressed()
     func locationDidChange(to location: CLLocationCoordinate2D)
     func questUpdated(_ quest: QuestProtocol)
+    func quit()
 }
 
 class QuestManager: QuestManagerDelegate {
@@ -70,6 +71,12 @@ class QuestManager: QuestManagerDelegate {
         self.refreshViews()
     }
     
+    func quit() {
+        self.currentQuest?.stop()
+        self.currentQuest = nil
+        self.refreshViews()
+    }
+    
     // MARK: - Quest Management
     
     func startQuest(_ quest: QuestProtocol) {
@@ -92,6 +99,7 @@ class QuestManager: QuestManagerDelegate {
     
     func refreshViews() {
         if self.currentQuest != nil {
+            self.mainInterface?.quitButton(show: true)
             let step = self.currentQuest.currentStep()
             
             guard step != nil else {
@@ -102,8 +110,12 @@ class QuestManager: QuestManagerDelegate {
 
             self.show(step: step!)
         } else if self.ableToStartQuest != nil {
+            self.mainInterface?.set(viewStyle: .map)
+            self.mainInterface?.quitButton(show: false)
             self.showStart(quest: self.ableToStartQuest)
         } else {
+            self.mainInterface?.quitButton(show: false)
+            self.mainInterface?.set(viewStyle: .map)
             self.showFindQuest()
         }
     }

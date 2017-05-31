@@ -74,7 +74,7 @@ class MapCenterButton: UIView {
         self.view.backgroundColor = .clear
         
         self.containerView.backgroundColor = .clear
-        self.containerView.layer.cornerRadius = 8
+        self.containerView.layer.cornerRadius = 4
         self.containerView.layer.borderWidth = 0.5
         self.containerView.layer.borderColor = UIColor.black.cgColor
         self.containerView.clipsToBounds = true

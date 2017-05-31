@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -81,12 +82,26 @@
                                             <constraint firstItem="MEP-Su-v0F" firstAttribute="centerY" secondItem="zEj-Yd-lxj" secondAttribute="centerY" id="k3Q-8j-V2N"/>
                                         </constraints>
                                     </scrollView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gu-QX-DDX">
+                                        <rect key="frame" x="327" y="16" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="JEE-Tv-uRA"/>
+                                            <constraint firstAttribute="width" secondItem="2gu-QX-DDX" secondAttribute="height" multiplier="1:1" id="hwT-Pv-LcB"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="cQ5-AI-Kzf" eventType="touchUpInside" id="Wy0-AQ-Pwk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="2gu-QX-DDX" firstAttribute="top" secondItem="43n-7Q-isI" secondAttribute="top" constant="16" id="7JH-RP-T3l"/>
                                     <constraint firstItem="zEj-Yd-lxj" firstAttribute="leading" secondItem="43n-7Q-isI" secondAttribute="leading" id="IG0-a6-XLK"/>
                                     <constraint firstItem="zEj-Yd-lxj" firstAttribute="top" secondItem="43n-7Q-isI" secondAttribute="top" id="NfC-qH-zja"/>
                                     <constraint firstAttribute="bottom" secondItem="zEj-Yd-lxj" secondAttribute="bottom" id="kaX-9A-Vvt"/>
+                                    <constraint firstAttribute="trailing" secondItem="2gu-QX-DDX" secondAttribute="trailing" constant="16" id="xRf-6M-qdJ"/>
                                     <constraint firstAttribute="trailing" secondItem="zEj-Yd-lxj" secondAttribute="trailing" id="yjf-df-5t5"/>
                                 </constraints>
                             </view>
@@ -123,6 +138,7 @@
                     <navigationItem key="navigationItem" id="zFd-90-n1z"/>
                     <connections>
                         <outlet property="cameraView" destination="uWc-DY-DqT" id="QHQ-M5-1Kf"/>
+                        <outlet property="closeButton" destination="2gu-QX-DDX" id="8qV-zd-oWe"/>
                         <outlet property="compassView" destination="213-g2-0AM" id="2oq-g8-CfU"/>
                         <outlet property="mapView" destination="SWg-i2-c52" id="dlh-Dr-olQ"/>
                         <outlet property="segmentControl" destination="kaP-Ek-Oj7" id="Yi9-tA-hXv"/>
@@ -134,4 +150,7 @@
             <point key="canvasLocation" x="-842.39999999999998" y="359.37031484257875"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close" width="32" height="32"/>
+    </resources>
 </document>
