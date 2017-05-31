@@ -19,6 +19,7 @@ protocol QuestProtocol: class {
     func canStart() -> Bool
     func locationDidChange(to location: CLLocationCoordinate2D)
     
-    func start()
+    func start(managerDelegate: QuestManagerDelegate)
+    func stop()
     func currentStep() -> QuestStep?
 }

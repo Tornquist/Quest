@@ -14,6 +14,11 @@ class BasicQuest: QuestProtocol {
     var step: QuestStep?
     var steps: [QuestStep] = []
     
+    var manager: QuestManagerDelegate?
+    
+    var active = false
+    var ableToStart = false
+    
     init() {
         steps = [
             QuestStep(
@@ -24,11 +29,18 @@ class BasicQuest: QuestProtocol {
         ]
     }
     
-
-    var ableToStart = false
+    // MARK: - Quest Protocol
     
-    func start() {
+    func start(managerDelegate: QuestManagerDelegate) {
         self.step = steps.first
+        self.manager = managerDelegate
+        self.active = true
+    }
+    
+    func stop() {
+        self.step = nil
+        self.manager = nil
+        self.active = false
     }
     
     func name() -> String {
@@ -48,11 +60,29 @@ class BasicQuest: QuestProtocol {
     }
     
     func canStart() -> Bool {
-        return ableToStart
+        return !active && ableToStart
     }
     
     func locationDidChange(to location: CLLocationCoordinate2D) {
-        let userLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        self.active ? self.refreshCurrentStep(with: location) : self.refreshAbleToStart(with: location)
+    }
+    
+    func currentStep() -> QuestStep? {
+        return self.step
+    }
+    
+    // MARK: - Internal Methods
+    
+    func locationFrom(coordinate: CLLocationCoordinate2D) -> CLLocation {
+        return CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
+    
+    func refreshCurrentStep(with coordinate: CLLocationCoordinate2D) {
+        print("Refreshing step")
+    }
+    
+    func refreshAbleToStart(with coordinate: CLLocationCoordinate2D) {
+        let userLocation = locationFrom(coordinate: coordinate)
         
         let startingCoords = self.startingPosition()
         let startingLocation = CLLocation(latitude: startingCoords.latitude, longitude: startingCoords.longitude)
@@ -61,9 +91,5 @@ class BasicQuest: QuestProtocol {
         let closeEnough = distance < self.startingRadius()
         
         self.ableToStart = closeEnough
-    }
-    
-    func currentStep() -> QuestStep? {
-        return self.step
     }
 }

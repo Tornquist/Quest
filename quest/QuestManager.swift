@@ -12,6 +12,7 @@ import CoreLocation
 protocol QuestManagerDelegate: class {
     func mainButtonPressed()
     func locationDidChange(to location: CLLocationCoordinate2D)
+    func questUpdated(_ quest: QuestProtocol)
 }
 
 class QuestManager: QuestManagerDelegate {
@@ -48,6 +49,8 @@ class QuestManager: QuestManagerDelegate {
     func locationDidChange(to location: CLLocationCoordinate2D) {
         if self.currentQuest == nil {
             self.refreshAvailable(with: location)
+        } else {
+            self.currentQuest.locationDidChange(to: location)
         }
     }
     
@@ -57,13 +60,23 @@ class QuestManager: QuestManagerDelegate {
         }
     }
     
+    func questUpdated(_ quest: QuestProtocol) {
+        guard self.currentQuest != nil && self.currentQuest.sku() == quest.sku() else {
+            // Wrong Quest
+            quest.stop()
+            return
+        }
+        
+        self.refreshViews()
+    }
+    
     // MARK: - Quest Management
     
     func startQuest(_ quest: QuestProtocol) {
         self.currentQuest = quest
         self.ableToStartQuest = nil
         
-        self.currentQuest.start()
+        self.currentQuest.start(managerDelegate: self)
         self.refreshViews()
     }
     
