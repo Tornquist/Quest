@@ -117,6 +117,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         if sender == self.startButton {
             self.questManager.mainButtonPressed()
         } else if sender == self.closeButton {
+            guard !self.questManager.questComplete() else {
+                self.questManager.quit()
+                return
+            }
+            
             let alert = UIAlertController(title: "Would you like to abandon your current quest?", message: "All progress will be lost. You can only resume from the beginning.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes, Quit", style: .destructive, handler: { (_) in
                 self.questManager.quit()

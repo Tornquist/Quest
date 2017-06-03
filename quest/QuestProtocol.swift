@@ -12,6 +12,7 @@ import CoreLocation
 protocol QuestProtocol: class {
     func name() -> String
     func sku() -> String
+    func successMessage() -> String?
     
     func startingPosition() -> CLLocationCoordinate2D
     func startingRadius() -> CLLocationDistance

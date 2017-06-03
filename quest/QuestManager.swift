@@ -14,6 +14,7 @@ protocol QuestManagerDelegate: class {
     func locationDidChange(to location: CLLocationCoordinate2D)
     func questUpdated(_ quest: QuestProtocol)
     func quit()
+    func questComplete() -> Bool
 }
 
 class QuestManager: QuestManagerDelegate {
@@ -79,6 +80,10 @@ class QuestManager: QuestManagerDelegate {
         self.refreshViews()
     }
     
+    func questComplete() -> Bool {
+        return self.currentQuest != nil && self.currentQuest.currentStep() == nil
+    }
+    
     // MARK: - Quest Management
     
     func startQuest(_ quest: QuestProtocol) {
@@ -105,7 +110,8 @@ class QuestManager: QuestManagerDelegate {
             let step = self.currentQuest.currentStep()
             
             guard step != nil else {
-                self.mainInterface?.showMessage("You win!")
+                let message = self.currentQuest.successMessage() ?? "You win!"
+                self.mainInterface?.showMessage(message)
                 self.mainInterface?.hideButton()
                 return
             }

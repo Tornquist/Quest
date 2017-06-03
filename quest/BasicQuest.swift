@@ -19,11 +19,7 @@ class BasicQuest: QuestProtocol {
     var active = false
     var ableToStart = false
     
-    var complete = false
-    
     init() {
-        complete = false
-        
         steps = [
             QuestStep(
                 type: .compass,
@@ -82,6 +78,10 @@ class BasicQuest: QuestProtocol {
         return "basic_quest"
     }
     
+    func successMessage() -> String? {
+        return nil
+    }
+    
     func startingPosition() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386)
     }
@@ -110,12 +110,9 @@ class BasicQuest: QuestProtocol {
         }
         
         if let index = self.steps.index(where: { $0 == currentStep! }) {
-            if index < self.steps.count - 1 {
-                self.step = self.steps[index + 1]
-                self.manager?.questUpdated(self)
-            } else {
-                print("On last item already")
-            }
+            self.step = (index < self.steps.count - 1) ? self.steps[index + 1] : nil
+            
+            self.manager?.questUpdated(self)
         }
     }
     
