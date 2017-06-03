@@ -19,10 +19,39 @@ class BasicQuest: QuestProtocol {
     var active = false
     var ableToStart = false
     
+    var complete = false
+    
     init() {
+        complete = false
+        
         steps = [
             QuestStep(
                 type: .compass,
+                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                radius: 60,
+                overlayName: nil),
+            QuestStep(
+                type: .map,
+                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                radius: 60,
+                overlayName: nil),
+            QuestStep(
+                type: .compass,
+                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                radius: 60,
+                overlayName: nil),
+            QuestStep(
+                type: .map,
+                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                radius: 60,
+                overlayName: nil),
+            QuestStep(
+                type: .compass,
+                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                radius: 60,
+                overlayName: nil),
+            QuestStep(
+                type: .map,
                 destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
                 radius: 60,
                 overlayName: nil)
@@ -71,6 +100,23 @@ class BasicQuest: QuestProtocol {
     
     func currentStep() -> QuestStep? {
         return self.step
+    }
+    
+    func mainButtonPressed() {
+        let currentStep: QuestStep! = self.currentStep()
+        
+        guard currentStep != nil && currentStep.complete else {
+            return
+        }
+        
+        if let index = self.steps.index(where: { $0 == currentStep! }) {
+            if index < self.steps.count - 1 {
+                self.step = self.steps[index + 1]
+                self.manager?.questUpdated(self)
+            } else {
+                print("On last item already")
+            }
+        }
     }
     
     // MARK: - Internal Methods

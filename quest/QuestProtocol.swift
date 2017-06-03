@@ -22,4 +22,6 @@ protocol QuestProtocol: class {
     func start(managerDelegate: QuestManagerDelegate)
     func stop()
     func currentStep() -> QuestStep?
+    
+    func mainButtonPressed()
 }

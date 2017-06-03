@@ -56,7 +56,9 @@ class QuestManager: QuestManagerDelegate {
     }
     
     func mainButtonPressed() {
-        if self.currentQuest == nil && self.ableToStartQuest != nil {
+        if self.currentQuest != nil {
+            self.currentQuest.mainButtonPressed()
+        } else if self.ableToStartQuest != nil {
             self.startQuest(self.ableToStartQuest)
         }
     }

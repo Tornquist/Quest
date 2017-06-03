@@ -16,6 +16,9 @@ enum StepType {
 }
 
 class QuestStep {
+    
+    var id: String
+    
     var type: StepType
     
     var destination: CLLocationCoordinate2D!
@@ -26,6 +29,8 @@ class QuestStep {
     var complete: Bool = false
     
     init(type: StepType, destination: CLLocationCoordinate2D?, radius: CLLocationDistance?, overlayName: String?) {
+        self.id = UUID.init().uuidString
+        
         self.type = type
         self.destination = destination
         self.radius = radius
@@ -48,5 +53,9 @@ class QuestStep {
     
     func reset() {
         self.complete = false
+    }
+    
+    static func ==(lhs: QuestStep, rhs: QuestStep) -> Bool {
+        return lhs.id == rhs.id
     }
 }
