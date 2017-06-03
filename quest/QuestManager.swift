@@ -145,7 +145,7 @@ class QuestManager: QuestManagerDelegate {
         case .map:
             self.mainInterface?.showMessage("Go to the location on the map")
             self.mainInterface?.set(viewStyle: .map)
-//            self.mapInterface?.showDestination()
+            self.mapInterface?.show(step: step)
         case .compass:
             self.mainInterface?.showMessage("Follow the compass")
             self.mainInterface?.set(viewStyle: .compass)

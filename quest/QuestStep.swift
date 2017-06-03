@@ -16,7 +16,6 @@ enum StepType {
 }
 
 class QuestStep {
-    
     var id: String
     
     var type: StepType

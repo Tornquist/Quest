@@ -39,7 +39,7 @@ class BasicQuest: QuestProtocol {
             QuestStep(
                 type: .map,
                 destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 60,
+                radius: 120,
                 overlayName: nil),
             QuestStep(
                 type: .compass,
@@ -49,7 +49,7 @@ class BasicQuest: QuestProtocol {
             QuestStep(
                 type: .map,
                 destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 60,
+                radius: 180,
                 overlayName: nil)
         ]
     }

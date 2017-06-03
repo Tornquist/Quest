@@ -12,6 +12,7 @@ import MapKit
 protocol MapViewInterface: class {
     func clearOverlays()
     func showAvailable(quests: [QuestProtocol])
+    func show(step questStep: QuestStep)
     func refreshAvailable()
 }
 
@@ -29,6 +30,10 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     var quests: [QuestProtocol] = []
     var questOverlays: [MKCircle] = []
     var canStartQuest: [Bool] = []
+    
+    weak var questStep: QuestStep?
+    var questStepOverlay: MKCircle?
+    var questStepComplete: Bool?
     
     var firstMapUpdate = true
     
@@ -167,7 +172,35 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         self.quests = []
         self.questOverlays.removeAll()
         self.canStartQuest.removeAll()
+        
+        self.questStep = nil
+        self.questStepOverlay = nil
+        self.questStepComplete = nil
+        
         self.mapView.removeOverlays(self.mapView.overlays)
+    }
+    
+    func show(step questStep: QuestStep) {
+        let newStep = self.questStep == nil || self.questStep?.id != questStep.id
+        let completeChanged = self.questStepComplete != questStep.complete
+        
+        if newStep {
+            self.clearOverlays()
+            self.questStep = questStep
+        }
+        
+        if newStep || completeChanged {
+            if self.questStepOverlay != nil {
+                self.mapView.remove(self.questStepOverlay!)
+            }
+            
+            self.questStepOverlay = self.overlayFor(questStep: questStep)
+            self.questStepComplete = questStep.complete
+            
+            if self.questStepOverlay != nil {
+                self.mapView.add(self.questStepOverlay!)
+            }
+        }
     }
     
     func showAvailable(quests: [QuestProtocol]) {
@@ -212,6 +245,17 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         return circle
     }
     
+    func overlayFor(questStep: QuestStep) -> MKCircle? {
+        guard questStep.destination != nil && questStep.radius != nil else {
+            return nil
+        }
+        
+        let circle = MKCircle(center: questStep.destination!, radius: questStep.radius!)
+        circle.title = questStep.id
+        
+        return circle
+    }
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard overlay is MKCircle else {
             return MKOverlayRenderer(overlay: overlay)
@@ -221,8 +265,16 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         let index = self.quests.index { (quest) -> Bool in
             return title == quest.sku()
         }
+        let isQuest = index != nil
+        let isQuestStep = title == self.questStep?.id
         
-        let canStart = index != nil && index! < self.canStartQuest.count ? self.canStartQuest[index!] : false
+        var canStart = false
+        
+        if isQuest {
+            canStart = index != nil && index! < self.canStartQuest.count ? self.canStartQuest[index!] : false
+        } else if isQuestStep {
+            canStart = self.questStepComplete ?? false
+        }
         
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.strokeColor = .clear
