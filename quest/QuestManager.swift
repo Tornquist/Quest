@@ -77,6 +77,8 @@ class QuestManager: QuestManagerDelegate {
     func quit() {
         self.currentQuest?.stop()
         self.currentQuest = nil
+        
+        self.reset()
         self.refreshViews()
     }
     
@@ -143,12 +145,15 @@ class QuestManager: QuestManagerDelegate {
         case .map:
             self.mainInterface?.showMessage("Go to the location on the map")
             self.mainInterface?.set(viewStyle: .map)
+//            self.mapInterface?.showDestination()
         case .compass:
             self.mainInterface?.showMessage("Follow the compass")
             self.mainInterface?.set(viewStyle: .compass)
+            self.mapInterface?.clearOverlays()
         case .camera:
             self.mainInterface?.showMessage("Use the camera to find clues")
             self.mainInterface?.set(viewStyle: .camera)
+            self.mapInterface?.clearOverlays()
         }
         
         step.complete ? self.mainInterface?.showButton(withTitle: "Continue") : self.mainInterface?.hideButton()

@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 protocol MapViewInterface: class {
+    func clearOverlays()
     func showAvailable(quests: [QuestProtocol])
     func refreshAvailable()
 }
@@ -162,12 +163,17 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     
     // MARK: - Overlays
     
-    func showAvailable(quests: [QuestProtocol]) {
-        self.quests = quests
+    func clearOverlays() {
+        self.quests = []
         self.questOverlays.removeAll()
         self.canStartQuest.removeAll()
-        
         self.mapView.removeOverlays(self.mapView.overlays)
+    }
+    
+    func showAvailable(quests: [QuestProtocol]) {
+        self.clearOverlays()
+        
+        self.quests = quests
         
         self.quests.forEach { (quest) in
             let circle = overlayFor(quest: quest)
