@@ -23,7 +23,7 @@ class BasicQuest: QuestProtocol {
         steps = [
             QuestStep(
                 type: .compass,
-                destination: CLLocationCoordinate2D(latitude: 41.937869, longitude: -87.644062),
+                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
                 radius: 60,
                 overlayName: nil)
         ]
@@ -39,6 +39,8 @@ class BasicQuest: QuestProtocol {
     
     func stop() {
         self.step = nil
+        self.steps.forEach({ $0.reset() })
+        
         self.manager = nil
         self.active = false
     }
@@ -73,21 +75,16 @@ class BasicQuest: QuestProtocol {
     
     // MARK: - Internal Methods
     
-    func locationFrom(coordinate: CLLocationCoordinate2D) -> CLLocation {
-        return CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-    }
-    
     func refreshCurrentStep(with coordinate: CLLocationCoordinate2D) {
-        print("Refreshing step")
+        let refreshNeeded = self.currentStep()?.update(with: coordinate) ?? false
+        
+        if refreshNeeded {
+            self.manager?.questUpdated(self)
+        }
     }
     
     func refreshAbleToStart(with coordinate: CLLocationCoordinate2D) {
-        let userLocation = locationFrom(coordinate: coordinate)
-        
-        let startingCoords = self.startingPosition()
-        let startingLocation = CLLocation(latitude: startingCoords.latitude, longitude: startingCoords.longitude)
-        
-        let distance = userLocation.distance(from: startingLocation)
+        let distance = LocationHelper.distanceBetween(self.startingPosition(), and: coordinate)
         let closeEnough = distance < self.startingRadius()
         
         self.ableToStart = closeEnough
