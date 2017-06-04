@@ -9,10 +9,21 @@
 import Foundation
 import CoreLocation
 
-enum StepType {
+enum StepType: CustomStringConvertible {
     case map
     case compass
     case camera
+    
+    var description: String {
+        switch self {
+        case .map:
+            return "Map"
+        case .compass:
+            return "Compass"
+        case .camera:
+            return "Camera"
+        }
+    }
 }
 
 class QuestStep {
@@ -48,6 +59,12 @@ class QuestStep {
         self.complete = closeEnough
         
         return updateNeeded
+    }
+    
+    func mark(asComplete complete: Bool) {
+        complete ?
+            self.complete = true :
+            self.reset()
     }
     
     func reset() {

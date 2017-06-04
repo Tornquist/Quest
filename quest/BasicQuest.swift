@@ -103,17 +103,32 @@ class BasicQuest: QuestProtocol {
     }
     
     func mainButtonPressed() {
-        let currentStep: QuestStep! = self.currentStep()
-        
-        guard currentStep != nil && currentStep.complete else {
-            return
-        }
-        
-        if let index = self.steps.index(where: { $0 == currentStep! }) {
+        if let index = self.currentStepIndex() {
             self.step = (index < self.steps.count - 1) ? self.steps[index + 1] : nil
             
             self.manager?.questUpdated(self)
         }
+    }
+    
+    func allSteps() -> [QuestStep] {
+        return self.steps
+    }
+    
+    func setStepNumber(to stepIndex: Int) {
+        let validNumber = stepIndex > 0 && stepIndex < self.steps.count
+        let differentStep = self.currentStepIndex() != stepIndex
+        
+        guard validNumber && differentStep else {
+            return
+        }
+        
+        self.step = self.steps[stepIndex]
+        
+        for (index, step) in self.steps.enumerated() {
+            step.mark(asComplete: index < stepIndex)
+        }
+        
+        self.manager?.questUpdated(self)
     }
     
     // MARK: - Internal Methods
@@ -131,5 +146,15 @@ class BasicQuest: QuestProtocol {
         let closeEnough = distance < self.startingRadius()
         
         self.ableToStart = closeEnough
+    }
+    
+    func currentStepIndex() -> Int? {
+        let currentStep: QuestStep! = self.currentStep()
+        
+        guard currentStep != nil && currentStep.complete else {
+            return nil
+        }
+        
+        return self.steps.index(where: { $0 == currentStep! })
     }
 }

@@ -45,6 +45,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     var viewStyle: MainViewStyle = .map
     
+    @IBOutlet weak var bottomView: UIView!
+    var bottomViewSwipeDown: UISwipeGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -95,6 +98,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.startButton.layer.cornerRadius = 8
         self.stackView.addArrangedSubview(self.startButton)
         self.startButton.isHidden = true
+        
+        self.bottomViewSwipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipedDown(_:)))
+        self.bottomViewSwipeDown.direction = .down
+        self.bottomViewSwipeDown.numberOfTouchesRequired = 3
+        self.bottomViewSwipeDown.cancelsTouchesInView = true
+        self.bottomView.addGestureRecognizer(self.bottomViewSwipeDown)
     }
     
     func refreshView() {
@@ -177,5 +186,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     func quitButton(show: Bool) {
         self.closeButton.isHidden = !show
+    }
+    
+    // Override Gestures
+    
+    func swipedDown(_ sender: UISwipeGestureRecognizer) {
+        // TODO: Disable for final release
+        
+        self.questManager.showDebug(on: self)
     }
 }

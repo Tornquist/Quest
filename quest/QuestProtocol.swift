@@ -25,4 +25,7 @@ protocol QuestProtocol: class {
     func currentStep() -> QuestStep?
     
     func mainButtonPressed()
+    
+    func setStepNumber(to stepIndex: Int)
+    func allSteps() -> [QuestStep]
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cQ5-AI-Kzf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cQ5-AI-Kzf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -58,7 +58,7 @@
                             <visualEffectView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bn-Fe-jS8">
                                 <rect key="frame" x="-0.5" y="333.5" width="375" height="333.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ymq-sW-M8u">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -96,6 +96,7 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="2gu-QX-DDX" firstAttribute="top" secondItem="43n-7Q-isI" secondAttribute="top" constant="16" id="7JH-RP-T3l"/>
                                     <constraint firstItem="zEj-Yd-lxj" firstAttribute="leading" secondItem="43n-7Q-isI" secondAttribute="leading" id="IG0-a6-XLK"/>
@@ -107,6 +108,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="XtF-7F-cqG" firstAttribute="top" secondItem="kaP-Ek-Oj7" secondAttribute="bottom" constant="16" id="152-mr-GL9"/>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="height" secondItem="7bn-Fe-jS8" secondAttribute="height" id="21J-Y3-560"/>
@@ -137,6 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zFd-90-n1z"/>
                     <connections>
+                        <outlet property="bottomView" destination="43n-7Q-isI" id="7KH-oq-v7o"/>
                         <outlet property="cameraView" destination="uWc-DY-DqT" id="QHQ-M5-1Kf"/>
                         <outlet property="closeButton" destination="2gu-QX-DDX" id="8qV-zd-oWe"/>
                         <outlet property="compassView" destination="213-g2-0AM" id="2oq-g8-CfU"/>

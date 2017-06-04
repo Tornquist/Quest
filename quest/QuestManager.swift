@@ -6,7 +6,7 @@
 //  Copyright © 2017 nathantornquist. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 
 protocol QuestManagerDelegate: class {
@@ -15,6 +15,8 @@ protocol QuestManagerDelegate: class {
     func questUpdated(_ quest: QuestProtocol)
     func quit()
     func questComplete() -> Bool
+    
+    func showDebug(on vc: UIViewController)
 }
 
 class QuestManager: QuestManagerDelegate {
@@ -157,5 +159,52 @@ class QuestManager: QuestManagerDelegate {
         }
         
         step.complete ? self.mainInterface?.showButton(withTitle: "Continue") : self.mainInterface?.hideButton()
+    }
+    
+    // MARK: - Debug Menus
+    
+    func showDebug(on vc: UIViewController) {
+        let showQuestSelection = self.currentQuest == nil
+        
+        showQuestSelection ? self.showQuestSelection(on: vc) : self.showStepSelection(on: vc)
+    }
+    
+    func showQuestSelection(on vc: UIViewController) {
+        let alert = UIAlertController(title: "Available Quests", message: "Select a quest to begin", preferredStyle: .actionSheet)
+        
+        self.availableQuests.forEach { (quest) in
+            alert.addAction(UIAlertAction(title: quest.name(), style: .default, handler: { (_) in
+                self.startQuest(quest)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        DispatchQueue.main.async {
+            vc.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showStepSelection(on vc: UIViewController) {
+        let alert = UIAlertController(title: "All Quest Steps", message: "Select a new step below to skip or replay", preferredStyle: .actionSheet)
+        
+        let currentStep = self.currentQuest.currentStep()
+        let allSteps = self.currentQuest.allSteps()
+        
+        for (index, step) in allSteps.enumerated() {
+            let isCurrent = currentStep != nil && (step == currentStep!)
+            let currentText = isCurrent ? " (current)" : ""
+            let name = "\(index): \(step.type.description)\(currentText)"
+            
+            alert.addAction(UIAlertAction(title: name, style: .default, handler: { (_) in
+                self.currentQuest.setStepNumber(to: index)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        DispatchQueue.main.async {
+            vc.present(alert, animated: true, completion: nil)
+        }
     }
 }
