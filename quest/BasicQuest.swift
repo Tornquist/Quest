@@ -30,7 +30,9 @@ class BasicQuest: QuestProtocol {
                 type: .map,
                 destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
                 radius: 60,
-                overlayName: nil),
+                overlayName: nil,
+                question: "What does the r in rgb stand for?",
+                answer: "Red"),
             QuestStep(
                 type: .compass,
                 destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
@@ -103,10 +105,24 @@ class BasicQuest: QuestProtocol {
     }
     
     func mainButtonPressed() {
-        if let index = self.currentStepIndex() {
+        let index: Int! = self.currentStepIndex()
+        guard index != nil else {
+            return
+        }
+        
+        let currentStep: QuestStep! = self.currentStep()
+        guard currentStep != nil else { return } // Impossible to hit if index is actually set
+        
+        switch currentStep.state {
+        case .question:
+            self.manager?.askQuestionFor(step: currentStep)
+            break
+        case .complete:
             self.step = (index < self.steps.count - 1) ? self.steps[index + 1] : nil
-            
             self.manager?.questUpdated(self)
+            break
+        default:
+            break
         }
     }
     
@@ -151,7 +167,7 @@ class BasicQuest: QuestProtocol {
     func currentStepIndex() -> Int? {
         let currentStep: QuestStep! = self.currentStep()
         
-        guard currentStep != nil && currentStep.complete else {
+        guard currentStep != nil else {
             return nil
         }
         

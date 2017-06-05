@@ -26,6 +26,17 @@ enum StepType: CustomStringConvertible {
     }
 }
 
+enum QuestState {
+    case ready
+    case question
+    case complete
+}
+
+enum QuestionType {
+    case freeResponse
+    case multipleChoice
+}
+
 class QuestStep {
     var id: String
     
@@ -36,7 +47,24 @@ class QuestStep {
     
     var overlayName: String?
     
-    var complete: Bool = false
+    var question: String?
+    var questionType: QuestionType?
+    var answer: String?
+    
+    var userAnswer: String? {
+        didSet {
+            self.refreshState()
+        }
+    }
+    
+    var closeEnough: Bool = false
+    var userAnswerCorrect: Bool {
+        get {
+            return self.question == nil || (self.userAnswer != nil && self.userAnswer!.lowercased() == self.answer!.lowercased())
+        }
+    }
+    
+    var state: QuestState = .ready
     
     init(type: StepType, destination: CLLocationCoordinate2D?, radius: CLLocationDistance?, overlayName: String?) {
         self.id = UUID.init().uuidString
@@ -47,6 +75,14 @@ class QuestStep {
         self.overlayName = overlayName
     }
     
+    convenience init(type: StepType, destination: CLLocationCoordinate2D?, radius: CLLocationDistance?, overlayName: String?, question: String, answer: String) {
+        self.init(type: type, destination: destination, radius: radius, overlayName: overlayName)
+        
+        self.question = question
+        self.questionType = .freeResponse
+        self.answer = answer
+    }
+    
     // Boolean return indicates view refresh needed
     func update(with coordinate: CLLocationCoordinate2D) -> Bool {
         guard (self.type == .map || self.type == .compass) && (self.destination != nil && self.radius != nil) else {
@@ -55,23 +91,35 @@ class QuestStep {
         
         let distance = LocationHelper.distanceBetween(self.destination, and: coordinate)
         let closeEnough = distance < self.radius
-        let updateNeeded = complete != closeEnough
-        self.complete = closeEnough
+        let updateNeeded = self.closeEnough != closeEnough
+        self.closeEnough = closeEnough
+        
+        self.refreshState()
         
         return updateNeeded
     }
     
     func mark(asComplete complete: Bool) {
-        complete ?
-            self.complete = true :
+        if complete {
+            if question != nil { self.userAnswer = self.answer }
+            self.closeEnough = true
+            self.refreshState()
+        } else {
             self.reset()
+        }
     }
     
     func reset() {
-        self.complete = false
+        self.closeEnough = false
+        self.userAnswer = nil
+        self.state = .ready
     }
     
     static func ==(lhs: QuestStep, rhs: QuestStep) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    func refreshState() {
+        self.state = self.closeEnough == false ? .ready : (self.userAnswerCorrect ? .complete : .question)
     }
 }

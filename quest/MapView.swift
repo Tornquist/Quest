@@ -33,7 +33,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     
     weak var questStep: QuestStep?
     var questStepOverlay: MKCircle?
-    var questStepComplete: Bool?
+    var questStepCloseEnough: Bool?
     
     var firstMapUpdate = true
     
@@ -175,14 +175,14 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         
         self.questStep = nil
         self.questStepOverlay = nil
-        self.questStepComplete = nil
+        self.questStepCloseEnough = nil
         
         self.mapView.removeOverlays(self.mapView.overlays)
     }
     
     func show(step questStep: QuestStep) {
         let newStep = self.questStep == nil || self.questStep?.id != questStep.id
-        let completeChanged = self.questStepComplete != questStep.complete
+        let completeChanged = self.questStepCloseEnough != questStep.closeEnough
         
         if newStep {
             self.clearOverlays()
@@ -195,7 +195,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
             }
             
             self.questStepOverlay = self.overlayFor(questStep: questStep)
-            self.questStepComplete = questStep.complete
+            self.questStepCloseEnough = questStep.closeEnough
             
             if self.questStepOverlay != nil {
                 self.mapView.add(self.questStepOverlay!)
@@ -273,7 +273,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         if isQuest {
             canStart = index != nil && index! < self.canStartQuest.count ? self.canStartQuest[index!] : false
         } else if isQuestStep {
-            canStart = self.questStepComplete ?? false
+            canStart = self.questStepCloseEnough ?? false
         }
         
         let circleRenderer = MKCircleRenderer(overlay: overlay)

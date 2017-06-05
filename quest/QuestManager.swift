@@ -17,6 +17,7 @@ protocol QuestManagerDelegate: class {
     func questComplete() -> Bool
     
     func showDebug(on vc: UIViewController)
+    func askQuestionFor(step: QuestStep)
 }
 
 class QuestManager: QuestManagerDelegate {
@@ -158,7 +159,19 @@ class QuestManager: QuestManagerDelegate {
             self.mapInterface?.clearOverlays()
         }
         
-        step.complete ? self.mainInterface?.showButton(withTitle: "Continue") : self.mainInterface?.hideButton()
+        switch step.state {
+        case .ready:
+            self.mainInterface?.hideButton()
+        case .question:
+            self.mainInterface?.showMessage(step.question ?? "")
+            self.mainInterface?.showButton(withTitle: "Answer Question")
+        case .complete:
+            self.mainInterface?.showButton(withTitle: "Continue")
+        }
+    }
+    
+    func askQuestionFor(step: QuestStep) {
+        self.mainInterface?.askQuestionFor(step: step)
     }
     
     // MARK: - Debug Menus
