@@ -28,4 +28,6 @@ protocol QuestProtocol: class {
     
     func setStepNumber(to stepIndex: Int)
     func allSteps() -> [QuestStep]
+    
+    func stepQuestionAnswered(_ step: QuestStep)
 }

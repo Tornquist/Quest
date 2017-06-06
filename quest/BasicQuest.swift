@@ -54,6 +54,10 @@ class BasicQuest: QuestProtocol {
                 radius: 180,
                 overlayName: nil)
         ]
+        
+        for step in steps {
+            step.parent = self
+        }
     }
     
     // MARK: - Quest Protocol
@@ -105,21 +109,15 @@ class BasicQuest: QuestProtocol {
     }
     
     func mainButtonPressed() {
-        let index: Int! = self.currentStepIndex()
-        guard index != nil else {
-            return
-        }
-        
         let currentStep: QuestStep! = self.currentStep()
-        guard currentStep != nil else { return } // Impossible to hit if index is actually set
+        guard currentStep != nil else { return }
         
         switch currentStep.state {
         case .question:
             self.manager?.askQuestionFor(step: currentStep)
             break
         case .complete:
-            self.step = (index < self.steps.count - 1) ? self.steps[index + 1] : nil
-            self.manager?.questUpdated(self)
+            self.incrementIfPossible()
             break
         default:
             break
@@ -147,6 +145,15 @@ class BasicQuest: QuestProtocol {
         self.manager?.questUpdated(self)
     }
     
+    func stepQuestionAnswered(_ step: QuestStep) {
+        let currentStep = self.currentStep()
+        guard currentStep != nil && currentStep! == step && step.state == .complete else {
+            return
+        }
+        
+        self.incrementIfPossible()
+    }
+    
     // MARK: - Internal Methods
     
     func refreshCurrentStep(with coordinate: CLLocationCoordinate2D) {
@@ -162,6 +169,16 @@ class BasicQuest: QuestProtocol {
         let closeEnough = distance < self.startingRadius()
         
         self.ableToStart = closeEnough
+    }
+    
+    func incrementIfPossible() {
+        let index: Int! = self.currentStepIndex()
+        guard index != nil else {
+            return
+        }
+        
+        self.step = (index < self.steps.count - 1) ? self.steps[index + 1] : nil
+        self.manager?.questUpdated(self)
     }
     
     func currentStepIndex() -> Int? {

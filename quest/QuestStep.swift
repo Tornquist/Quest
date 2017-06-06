@@ -54,6 +54,7 @@ class QuestStep {
     var userAnswer: String? {
         didSet {
             self.refreshState()
+            self.parent?.stepQuestionAnswered(self)
         }
     }
     
@@ -65,6 +66,8 @@ class QuestStep {
     }
     
     var state: QuestState = .ready
+    
+    weak var parent: QuestProtocol?
     
     init(type: StepType, destination: CLLocationCoordinate2D?, radius: CLLocationDistance?, overlayName: String?) {
         self.id = UUID.init().uuidString
