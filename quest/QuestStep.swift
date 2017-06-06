@@ -86,9 +86,19 @@ class QuestStep {
         self.answer = answer
     }
     
+    convenience init(type: StepType, overlayName: String?, question: String, answer: String) {
+        self.init(type: type, destination: nil, radius: nil, overlayName: overlayName, question: question, answer: answer)
+    }
+    
     // Boolean return indicates view refresh needed
     func update(with coordinate: CLLocationCoordinate2D) -> Bool {
         guard (self.type == .map || self.type == .compass) && (self.destination != nil && self.radius != nil) else {
+            if !self.closeEnough {
+                self.closeEnough = true
+                self.refreshState()
+                return true
+            }
+            
             return false
         }
         
