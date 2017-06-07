@@ -186,25 +186,38 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     }
     
     func askQuestionFor(step: QuestStep) {
-        guard step.questionType != nil &&
-            step.questionType! == .freeResponse else {
+        guard step.questionType != nil else {
             print("Type not yet supported")
             return
         }
         
-        let alertController = UIAlertController(title: step.question, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: nil,
+            message: step.question,
+            preferredStyle: step.questionType! == QuestionType.multipleChoice ? .actionSheet : .alert
+        )
         
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Answer"
-        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Submit", style: .default, handler: { alert -> Void in
+        if step.questionType! == .freeResponse {
+            alertController.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "Answer"
+            }
             
-            let answerField = alertController.textFields![0] as UITextField
-            step.userAnswer = answerField.text
-            self.questManager.refreshViews()
-        }))
+            alertController.addAction(UIAlertAction(title: "Submit", style: .default, handler: { alert -> Void in
+                
+                let answerField = alertController.textFields![0] as UITextField
+                step.userAnswer = answerField.text
+                self.questManager.refreshViews()
+            }))
+        } else {
+            step.answers.shuffled().forEach({ (answer) in
+                alertController.addAction(UIAlertAction(title: answer, style: .default, handler: { (_) in
+                    step.userAnswer = answer
+                    self.questManager.refreshViews()
+                }))
+            })
+        }
         
         self.present(alertController, animated: true, completion: nil)
     }

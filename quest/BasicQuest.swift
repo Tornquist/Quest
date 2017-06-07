@@ -39,6 +39,12 @@ class BasicQuest: QuestProtocol {
                 question: "What does the b in rgb stand for?",
                 answer: "Blue"),
             QuestStep(
+                type: .camera,
+                overlayName: nil,
+                question: "What does the g in rgb stand for?",
+                answer: "Green",
+                options: ["Green", "Grape", "Granite", "Granola"]),
+            QuestStep(
                 type: .compass,
                 destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
                 radius: 60,

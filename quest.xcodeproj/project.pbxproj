@@ -23,6 +23,7 @@
 		D86F27AE1ED92B8C00BED8B5 /* BasicQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */; };
 		D86F27B01EDDA31A00BED8B5 /* QuestStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */; };
 		D86F27B21EE3319700BED8B5 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27B11EE3319700BED8B5 /* LocationHelper.swift */; };
+		D86F27B61EE8314600BED8B5 /* Array+Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27B51EE8314600BED8B5 /* Array+Shuffle.swift */; };
 		D89F36A11ECC83F000FCC3D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D89F36A01ECC83F000FCC3D8 /* Main.storyboard */; };
 		D89F36A31ECC841B00FCC3D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */; };
 		D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF88AF1EC0A26F00A227AE /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicQuest.swift; sourceTree = "<group>"; };
 		D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestStep.swift; sourceTree = "<group>"; };
 		D86F27B11EE3319700BED8B5 /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
+		D86F27B51EE8314600BED8B5 /* Array+Shuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Shuffle.swift"; sourceTree = "<group>"; };
 		D89F36A01ECC83F000FCC3D8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		D89F36A21ECC841B00FCC3D8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D8DF88AC1EC0A26F00A227AE /* NavQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +163,14 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		D86F27B41EE8313100BED8B5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D86F27B51EE8314600BED8B5 /* Array+Shuffle.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		D8DF88A31EC0A26F00A227AE = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 				D86F27941ED9166200BED8B5 /* Components */,
 				D86F27A81ED92B4E00BED8B5 /* Quests */,
 				D86F27B31EE3319D00BED8B5 /* Helpers */,
+				D86F27B41EE8313100BED8B5 /* Extensions */,
 				D8DF88BB1EC0A26F00A227AE /* Info.plist */,
 			);
 			path = quest;
@@ -280,6 +291,7 @@
 				D86F27AC1ED92B7400BED8B5 /* QuestProtocol.swift in Sources */,
 				D86F279A1ED9174F00BED8B5 /* MapCenterButton.swift in Sources */,
 				D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */,
+				D86F27B61EE8314600BED8B5 /* Array+Shuffle.swift in Sources */,
 				D86F27AE1ED92B8C00BED8B5 /* BasicQuest.swift in Sources */,
 				D86F27A01ED9217200BED8B5 /* CompassView.swift in Sources */,
 				D861D58F1ED5B4C700AE888A /* LandingViewController.swift in Sources */,

@@ -50,6 +50,7 @@ class QuestStep {
     var question: String?
     var questionType: QuestionType?
     var answer: String?
+    var answers: [String] = []
     
     var userAnswer: String? {
         didSet {
@@ -86,8 +87,22 @@ class QuestStep {
         self.answer = answer
     }
     
+    convenience init(type: StepType, destination: CLLocationCoordinate2D?, radius: CLLocationDistance?, overlayName: String?, question: String, answer: String, options: [String]) {
+        self.init(type: type, destination: destination, radius: radius, overlayName: overlayName, question: question, answer: answer)
+        
+        self.answers = options
+        self.questionType = .multipleChoice
+    }
+    
     convenience init(type: StepType, overlayName: String?, question: String, answer: String) {
         self.init(type: type, destination: nil, radius: nil, overlayName: overlayName, question: question, answer: answer)
+    }
+    
+    convenience init(type: StepType, overlayName: String?, question: String, answer: String, options: [String]) {
+        self.init(type: type, destination: nil, radius: nil, overlayName: overlayName, question: question, answer: answer)
+        
+        self.answers = options
+        self.questionType = .multipleChoice
     }
     
     // Boolean return indicates view refresh needed
