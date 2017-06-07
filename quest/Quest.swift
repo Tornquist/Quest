@@ -1,5 +1,5 @@
 //
-//  BasicQuest.swift
+//  Quest.swift
 //  quest
 //
 //  Created by Nathan Tornquist on 5/26/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class BasicQuest: QuestProtocol {
+class Quest: QuestProtocol {
     
     var step: QuestStep?
     var steps: [QuestStep] = []
@@ -19,52 +19,17 @@ class BasicQuest: QuestProtocol {
     var active = false
     var ableToStart = false
     
-    init() {
-        steps = [
-            QuestStep(
-                type: .compass,
-                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 60,
-                overlayName: nil),
-            QuestStep(
-                type: .map,
-                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 60,
-                overlayName: nil,
-                question: "What does the r in rgb stand for?",
-                answer: "Red"),
-            QuestStep(
-                type: .camera,
-                overlayName: "river",
-                question: "What does the b in rgb stand for?",
-                answer: "Blue"),
-            QuestStep(
-                type: .camera,
-                overlayName: nil,
-                question: "What does the g in rgb stand for?",
-                answer: "Green",
-                options: ["Green", "Grape", "Granite", "Granola"]),
-            QuestStep(
-                type: .compass,
-                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 60,
-                overlayName: nil),
-            QuestStep(
-                type: .map,
-                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 120,
-                overlayName: nil),
-            QuestStep(
-                type: .compass,
-                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 60,
-                overlayName: nil),
-            QuestStep(
-                type: .map,
-                destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                radius: 180,
-                overlayName: nil)
-        ]
+    var _name: String
+    var _sku: String
+    var _startingPosition: CLLocationCoordinate2D
+    var _startingRadius: CLLocationDistance
+    
+    init(name: String, sku: String, startingPosition: CLLocationCoordinate2D, startingRadius: CLLocationDistance, steps: [QuestStep]) {
+        self._name = name
+        self._sku = sku
+        self._startingPosition = startingPosition
+        self._startingRadius = startingRadius
+        self.steps = steps
         
         for step in steps {
             step.parent = self
@@ -88,11 +53,11 @@ class BasicQuest: QuestProtocol {
     }
     
     func name() -> String {
-        return "Basic Quest"
+        return self._name
     }
     
     func sku() -> String {
-        return "basic_quest"
+        return self._sku
     }
     
     func successMessage() -> String? {
@@ -100,11 +65,11 @@ class BasicQuest: QuestProtocol {
     }
     
     func startingPosition() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386)
+        return self._startingPosition
     }
     
     func startingRadius() -> CLLocationDistance {
-        return 60
+        return self._startingRadius
     }
     
     func canStart() -> Bool {

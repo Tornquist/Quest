@@ -20,7 +20,7 @@
 		D86F27A71ED924E600BED8B5 /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86F27A61ED924E600BED8B5 /* CameraView.xib */; };
 		D86F27AA1ED92B6600BED8B5 /* QuestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27A91ED92B6600BED8B5 /* QuestManager.swift */; };
 		D86F27AC1ED92B7400BED8B5 /* QuestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AB1ED92B7400BED8B5 /* QuestProtocol.swift */; };
-		D86F27AE1ED92B8C00BED8B5 /* BasicQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */; };
+		D86F27AE1ED92B8C00BED8B5 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AD1ED92B8C00BED8B5 /* Quest.swift */; };
 		D86F27B01EDDA31A00BED8B5 /* QuestStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */; };
 		D86F27B21EE3319700BED8B5 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27B11EE3319700BED8B5 /* LocationHelper.swift */; };
 		D86F27B61EE8314600BED8B5 /* Array+Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F27B51EE8314600BED8B5 /* Array+Shuffle.swift */; };
@@ -45,7 +45,7 @@
 		D86F27A61ED924E600BED8B5 /* CameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraView.xib; sourceTree = "<group>"; };
 		D86F27A91ED92B6600BED8B5 /* QuestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestManager.swift; sourceTree = "<group>"; };
 		D86F27AB1ED92B7400BED8B5 /* QuestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestProtocol.swift; sourceTree = "<group>"; };
-		D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicQuest.swift; sourceTree = "<group>"; };
+		D86F27AD1ED92B8C00BED8B5 /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestStep.swift; sourceTree = "<group>"; };
 		D86F27B11EE3319700BED8B5 /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		D86F27B51EE8314600BED8B5 /* Array+Shuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Shuffle.swift"; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 			children = (
 				D86F27A91ED92B6600BED8B5 /* QuestManager.swift */,
 				D86F27AB1ED92B7400BED8B5 /* QuestProtocol.swift */,
-				D86F27AD1ED92B8C00BED8B5 /* BasicQuest.swift */,
+				D86F27AD1ED92B8C00BED8B5 /* Quest.swift */,
 				D86F27AF1EDDA31A00BED8B5 /* QuestStep.swift */,
 			);
 			name = Quests;
@@ -292,7 +292,7 @@
 				D86F279A1ED9174F00BED8B5 /* MapCenterButton.swift in Sources */,
 				D8DF88B01EC0A26F00A227AE /* AppDelegate.swift in Sources */,
 				D86F27B61EE8314600BED8B5 /* Array+Shuffle.swift in Sources */,
-				D86F27AE1ED92B8C00BED8B5 /* BasicQuest.swift in Sources */,
+				D86F27AE1ED92B8C00BED8B5 /* Quest.swift in Sources */,
 				D86F27A01ED9217200BED8B5 /* CompassView.swift in Sources */,
 				D861D58F1ED5B4C700AE888A /* LandingViewController.swift in Sources */,
 			);

@@ -38,7 +38,59 @@ class QuestManager: QuestManagerDelegate {
     
     func loadQuests() {
         // Fancy file IO... or just a single named class
-        self.availableQuests = [BasicQuest()]
+        self.availableQuests = [
+            Quest(
+                name: "Basic Quest",
+                sku: "basic_quest",
+                startingPosition: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                startingRadius: 60,
+                steps: [
+                    QuestStep(
+                        type: .compass,
+                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                        radius: 60,
+                        overlayName: nil),
+                    QuestStep(
+                        type: .map,
+                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                        radius: 60,
+                        overlayName: nil,
+                        question: "What does the r in rgb stand for?",
+                        answer: "Red"),
+                    QuestStep(
+                        type: .camera,
+                        overlayName: "river",
+                        question: "What does the b in rgb stand for?",
+                        answer: "Blue"),
+                    QuestStep(
+                        type: .camera,
+                        overlayName: nil,
+                        question: "What does the g in rgb stand for?",
+                        answer: "Green",
+                        options: ["Green", "Grape", "Granite", "Granola"]),
+                    QuestStep(
+                        type: .compass,
+                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                        radius: 60,
+                        overlayName: nil),
+                    QuestStep(
+                        type: .map,
+                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                        radius: 120,
+                        overlayName: nil),
+                    QuestStep(
+                        type: .compass,
+                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                        radius: 60,
+                        overlayName: nil),
+                    QuestStep(
+                        type: .map,
+                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
+                        radius: 180,
+                        overlayName: nil)
+                ]
+            )
+        ]
     }
     
     func reset() {
