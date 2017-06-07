@@ -78,6 +78,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     func configureView() {
         self.mapView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
+        self.cameraView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
         
         self.messageLabel = UILabel()
         self.messageLabel.text = "Walk to a quest marker to begin"

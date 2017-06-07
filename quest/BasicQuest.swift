@@ -35,7 +35,7 @@ class BasicQuest: QuestProtocol {
                 answer: "Red"),
             QuestStep(
                 type: .camera,
-                overlayName: nil,
+                overlayName: "river",
                 question: "What does the b in rgb stand for?",
                 answer: "Blue"),
             QuestStep(

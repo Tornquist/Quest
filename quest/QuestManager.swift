@@ -157,6 +157,7 @@ class QuestManager: QuestManagerDelegate {
             self.mainInterface?.showMessage("Use the camera to find clues")
             self.mainInterface?.set(viewStyle: .camera)
             self.mapInterface?.clearOverlays()
+            self.cameraInterface?.showOverlay(named: step.overlayName)
         }
         
         switch step.state {
