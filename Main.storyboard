@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cQ5-AI-Kzf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cQ5-AI-Kzf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,18 +35,6 @@
                                 <rect key="frame" x="-0.5" y="0.5" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kaP-Ek-Oj7">
-                                <rect key="frame" x="16" y="289" width="215" height="29"/>
-                                <segments>
-                                    <segment title="Map"/>
-                                    <segment title="Compass"/>
-                                    <segment title="Camera"/>
-                                </segments>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="changedSegmentControl:" destination="cQ5-AI-Kzf" eventType="valueChanged" id="iuz-e5-Pq8"/>
-                                </connections>
-                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtF-7F-cqG" userLabel="Separator">
                                 <rect key="frame" x="-0.5" y="333" width="375" height="0.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,7 +45,7 @@
                             <visualEffectView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bn-Fe-jS8">
                                 <rect key="frame" x="-0.5" y="333.5" width="375" height="333.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ymq-sW-M8u">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -110,7 +97,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="XtF-7F-cqG" firstAttribute="top" secondItem="kaP-Ek-Oj7" secondAttribute="bottom" constant="16" id="152-mr-GL9"/>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="height" secondItem="7bn-Fe-jS8" secondAttribute="height" id="21J-Y3-560"/>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="width" secondItem="7bn-Fe-jS8" secondAttribute="width" id="3eS-Ea-Wyg"/>
                             <constraint firstItem="XtF-7F-cqG" firstAttribute="width" secondItem="7bn-Fe-jS8" secondAttribute="width" id="7L4-5p-LcF"/>
@@ -132,7 +118,6 @@
                             <constraint firstItem="NYs-aQ-V93" firstAttribute="top" secondItem="7bn-Fe-jS8" secondAttribute="bottom" id="fmM-DE-eRp"/>
                             <constraint firstItem="43n-7Q-isI" firstAttribute="centerX" secondItem="7bn-Fe-jS8" secondAttribute="centerX" id="kYQ-UB-kww"/>
                             <constraint firstItem="uWc-DY-DqT" firstAttribute="height" secondItem="l1I-jx-XrE" secondAttribute="height" id="lzR-Wp-m6i"/>
-                            <constraint firstItem="kaP-Ek-Oj7" firstAttribute="leading" secondItem="l1I-jx-XrE" secondAttribute="leadingMargin" id="n0x-En-RM9"/>
                             <constraint firstItem="7bn-Fe-jS8" firstAttribute="height" secondItem="l1I-jx-XrE" secondAttribute="height" multiplier="0.5" id="poX-j2-ebQ"/>
                             <constraint firstItem="7bn-Fe-jS8" firstAttribute="top" secondItem="XtF-7F-cqG" secondAttribute="bottom" id="rMG-sa-4Yh"/>
                         </constraints>
@@ -144,7 +129,6 @@
                         <outlet property="closeButton" destination="2gu-QX-DDX" id="8qV-zd-oWe"/>
                         <outlet property="compassView" destination="213-g2-0AM" id="2oq-g8-CfU"/>
                         <outlet property="mapView" destination="SWg-i2-c52" id="dlh-Dr-olQ"/>
-                        <outlet property="segmentControl" destination="kaP-Ek-Oj7" id="Yi9-tA-hXv"/>
                         <outlet property="stackView" destination="MEP-Su-v0F" id="Du2-5H-t3x"/>
                     </connections>
                 </viewController>

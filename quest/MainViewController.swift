@@ -35,7 +35,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     @IBOutlet weak var mapView: MapView!
     @IBOutlet weak var compassView: CompassView!
     @IBOutlet weak var cameraView: CameraView!
-    @IBOutlet weak var segmentControl: UISegmentedControl!
     
     @IBOutlet weak var closeButton: UIButton!
     
@@ -118,11 +117,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.cameraView.isHidden = mode != .camera
         
         (mode == .camera ? self.cameraView.startUpdating() : self.cameraView.stopUpdating())
-    }
-    
-    @IBAction func changedSegmentControl(_ sender: UISegmentedControl) {
-        self.viewStyle = MainViewStyle.init(rawValue: sender.selectedSegmentIndex) ?? .map
-        self.refreshView()
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
