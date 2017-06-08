@@ -1,0 +1,84 @@
+{
+  "name": "Basic Quest",
+  "sku": "basic_quest",
+  "start": {
+    "lat": 41.937494,
+    "long": -87.643386,
+    "radius": 60
+  },
+  "steps": [
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.937494,
+        "long": -87.643386,
+        "radius": 60
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.937494,
+        "long": -87.643386,
+        "radius": 60
+      },
+      "question": {
+        "question": "What does the r in rgb stand for?",
+        "answer": "Red"
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "river",
+      "question": {
+        "question": "What does the b in rgb stand for?",
+        "answer": "Blue"
+      }
+    },
+    {
+      "type": "camera",
+      "question": {
+        "question": "What does the g in rgb stand for?",
+        "answer": "Green",
+        "options": [
+          "Green",
+          "Grape",
+          "Granite",
+          "Granola"
+        ]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.937494,
+        "long": -87.643386,
+        "radius": 60
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.937494,
+        "long": -87.643386,
+        "radius": 120
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.937494,
+        "long": -87.643386,
+        "radius": 60
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.937494,
+        "long": -87.643386,
+        "radius": 180
+      }
+    }
+  ]
+}

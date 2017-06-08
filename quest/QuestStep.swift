@@ -9,10 +9,10 @@
 import Foundation
 import CoreLocation
 
-enum StepType: CustomStringConvertible {
-    case map
-    case compass
-    case camera
+enum StepType: String, CustomStringConvertible {
+    case map = "map"
+    case compass = "compass"
+    case camera = "camera"
     
     var description: String {
         switch self {
@@ -91,7 +91,7 @@ class QuestStep {
         self.init(type: type, destination: destination, radius: radius, overlayName: overlayName, question: question, answer: answer)
         
         self.answers = options
-        self.questionType = .multipleChoice
+        self.questionType = options.isEmpty ? .freeResponse : .multipleChoice
     }
     
     convenience init(type: StepType, overlayName: String?, question: String, answer: String) {
@@ -103,6 +103,50 @@ class QuestStep {
         
         self.answers = options
         self.questionType = .multipleChoice
+    }
+    
+    convenience init?(withJSON jsonDictionary: [String: AnyObject]) {
+        let typeString = jsonDictionary["type"] as? String
+        let type = StepType(rawValue: typeString ?? "")
+        guard type != nil else { return nil }
+        
+        var destinationPosition: CLLocationCoordinate2D? = nil
+        var destinationRadius: CLLocationDistance? = nil
+        
+        if let destinationDict = jsonDictionary["destination"] as? [String: AnyObject] {
+            let lat = destinationDict["lat"] as? Double
+            let long = destinationDict["long"] as? Double
+            let radius = destinationDict["radius"] as? Double
+            
+            guard lat != nil && long != nil && radius != nil else {
+                return nil
+            }
+            
+            destinationPosition = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
+            destinationRadius = radius!
+        }
+        
+        let overlayName = jsonDictionary["overlay"] as? String
+        
+        var question: String? = nil
+        var answer: String? = nil
+        var options: [String] = []
+        
+        if let questionDict = jsonDictionary["question"] as? [String: AnyObject] {
+            question = questionDict["question"] as? String
+            answer = questionDict["answer"] as? String
+            options = questionDict["options"] as? [String] ?? []
+            
+            guard question != nil && answer != nil else {
+                return nil
+            }
+        }
+        
+        if question == nil {
+            self.init(type: type!, destination: destinationPosition, radius: destinationRadius, overlayName: overlayName)
+        } else {
+            self.init(type: type!, destination: destinationPosition, radius: destinationRadius, overlayName: overlayName, question: question!, answer: answer!, options: options)
+        }
     }
     
     // Boolean return indicates view refresh needed

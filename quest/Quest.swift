@@ -36,6 +36,47 @@ class Quest: QuestProtocol {
         }
     }
     
+    convenience init?(withJSON jsonDictionary: [String: AnyObject]) {
+        let name = jsonDictionary["name"] as? String
+        let sku = jsonDictionary["sku"] as? String
+        var startingPosition: CLLocationCoordinate2D? = nil
+        var startingRadius: CLLocationDistance? = nil
+        
+        if let startDict = jsonDictionary["start"] as? [String: AnyObject] {
+            let lat = startDict["lat"] as? Double
+            let long = startDict["long"] as? Double
+            let radius = startDict["radius"] as? Double
+            
+            guard lat != nil && long != nil && radius != nil else {
+                return nil
+            }
+            
+            startingPosition = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
+            startingRadius = radius!
+        }
+        
+        var questSteps: [QuestStep] = []
+        if let steps = jsonDictionary["steps"] as? [[String: AnyObject]] {
+            for step in steps {
+                let stepOption = QuestStep(withJSON: step)
+                
+                guard stepOption != nil else {
+                    return nil
+                }
+                
+                questSteps.append(stepOption!)
+            }
+        } else {
+            return nil
+        }
+        
+        guard name != nil && sku != nil && startingPosition != nil && startingRadius != nil && !questSteps.isEmpty else {
+            return nil
+        }
+        
+        self.init(name: name!, sku: sku!, startingPosition: startingPosition!, startingRadius: startingRadius!, steps: questSteps)
+    }
+    
     // MARK: - Quest Protocol
     
     func start(managerDelegate: QuestManagerDelegate) {

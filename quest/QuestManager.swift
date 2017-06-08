@@ -37,60 +37,24 @@ class QuestManager: QuestManagerDelegate {
     var availableQuests: [QuestProtocol] = []
     
     func loadQuests() {
-        // Fancy file IO... or just a single named class
-        self.availableQuests = [
-            Quest(
-                name: "Basic Quest",
-                sku: "basic_quest",
-                startingPosition: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                startingRadius: 60,
-                steps: [
-                    QuestStep(
-                        type: .compass,
-                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                        radius: 60,
-                        overlayName: nil),
-                    QuestStep(
-                        type: .map,
-                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                        radius: 60,
-                        overlayName: nil,
-                        question: "What does the r in rgb stand for?",
-                        answer: "Red"),
-                    QuestStep(
-                        type: .camera,
-                        overlayName: "river",
-                        question: "What does the b in rgb stand for?",
-                        answer: "Blue"),
-                    QuestStep(
-                        type: .camera,
-                        overlayName: nil,
-                        question: "What does the g in rgb stand for?",
-                        answer: "Green",
-                        options: ["Green", "Grape", "Granite", "Granola"]),
-                    QuestStep(
-                        type: .compass,
-                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                        radius: 60,
-                        overlayName: nil),
-                    QuestStep(
-                        type: .map,
-                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                        radius: 120,
-                        overlayName: nil),
-                    QuestStep(
-                        type: .compass,
-                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                        radius: 60,
-                        overlayName: nil),
-                    QuestStep(
-                        type: .map,
-                        destination: CLLocationCoordinate2D(latitude: 41.937494, longitude: -87.643386),
-                        radius: 180,
-                        overlayName: nil)
-                ]
-            )
-        ]
+        let questPaths = Bundle.main.paths(forResourcesOfType: ".json", inDirectory: nil)
+        for path in questPaths {
+            var templateText: String! = nil
+            do {
+                templateText = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue) as String
+            } catch { continue }
+            
+            var jsonDictionary: [String: AnyObject] = [:]
+            
+            do {
+                let data = templateText.data(using: String.Encoding.utf8, allowLossyConversion: false)
+                jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: AnyObject]
+            } catch { continue }
+            
+            if let newQuest = Quest(withJSON: jsonDictionary) {
+                availableQuests.append(newQuest)
+            }
+        }
     }
     
     func reset() {
