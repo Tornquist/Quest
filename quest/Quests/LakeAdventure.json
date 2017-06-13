@@ -1,0 +1,42 @@
+{
+  "name": "Lake Adventure",
+  "sku": "lake_adventure",
+  "start": {
+    "lat": 41.937861,
+    "long": -87.636966,
+    "radius": 30
+  },
+  "steps": [
+
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_01",
+      "question": {
+        "question": "How many large rocks are in this planting?",
+        "answer": "2"
+      }
+    },
+
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.937726,
+        "long": -87.63624,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_03",
+      "question": {
+        "question": "How many buildings can be seen over the trees?",
+        "answer": "3"
+      }
+    },
+
+
+  ]
+}
