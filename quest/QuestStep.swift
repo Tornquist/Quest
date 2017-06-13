@@ -42,6 +42,8 @@ class QuestStep {
     
     var type: StepType
     
+    var autocomplete: Bool = false
+    
     var destination: CLLocationCoordinate2D!
     var radius: CLLocationDistance!
     
@@ -112,11 +114,13 @@ class QuestStep {
         
         var destinationPosition: CLLocationCoordinate2D? = nil
         var destinationRadius: CLLocationDistance? = nil
+        var autocomplete: Bool = false
         
         if let destinationDict = jsonDictionary["destination"] as? [String: AnyObject] {
             let lat = destinationDict["lat"] as? Double
             let long = destinationDict["long"] as? Double
             let radius = destinationDict["radius"] as? Double
+            autocomplete = destinationDict["autocomplete"] as? Bool ?? false
             
             guard lat != nil && long != nil && radius != nil else {
                 return nil
@@ -147,6 +151,8 @@ class QuestStep {
         } else {
             self.init(type: type!, destination: destinationPosition, radius: destinationRadius, overlayName: overlayName, question: question!, answer: answer!, options: options)
         }
+        
+        self.autocomplete = autocomplete
     }
     
     // Boolean return indicates view refresh needed
@@ -167,6 +173,11 @@ class QuestStep {
         self.closeEnough = closeEnough
         
         self.refreshState()
+        
+        if (self.state == .complete && self.autocomplete) {
+            self.parent?.stepCompleted(self)
+            return false // No need to trigger update twice
+        }
         
         return updateNeeded
     }

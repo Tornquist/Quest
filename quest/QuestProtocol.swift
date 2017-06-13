@@ -29,5 +29,6 @@ protocol QuestProtocol: class {
     func setStepNumber(to stepIndex: Int)
     func allSteps() -> [QuestStep]
     
+    func stepCompleted(_ step: QuestStep)
     func stepQuestionAnswered(_ step: QuestStep)
 }

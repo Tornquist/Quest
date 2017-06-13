@@ -163,6 +163,10 @@ class Quest: QuestProtocol {
     }
     
     func stepQuestionAnswered(_ step: QuestStep) {
+        self.stepCompleted(step)
+    }
+    
+    func stepCompleted(_ step: QuestStep) {
         let currentStep = self.currentStep()
         guard currentStep != nil && currentStep! == step && step.state == .complete else {
             return
