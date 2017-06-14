@@ -7,8 +7,6 @@
     "radius": 30
   },
   "steps": [
-
-
     {
       "type": "camera",
       "overlay": "lake_adventure_01",
@@ -17,7 +15,6 @@
         "answer": "2"
       }
     },
-
 
     {
       "type": "compass",
@@ -37,6 +34,41 @@
       }
     },
 
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_05",
+      "question": {
+        "question": "What are the people in the missing frame doing?",
+        "answer": "Kissing",
+        "options": ["Kissing", "Hugging", "#Winning", "That's a building"]
+      }
+    },
 
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_08",
+      "question": {
+        "question": "Name the business",
+        "answer": "Herb-N-Juice",
+        "options": ["Herb-N-Juice", "Juice-N-Herb", "Herb-N-Herb", "Juice-N-Juice"]
+      }
+    },
+
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.93887575,
+        "long": -87.634531,
+        "radius": 25
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_09",
+      "question": {
+        "question": "What building is that?",
+        "answer": "Hancock Tower"
+      }
+    },
   ]
 }
