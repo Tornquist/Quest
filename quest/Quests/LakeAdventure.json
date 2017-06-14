@@ -292,6 +292,52 @@
         "question": "What endures all things?",
         "answer": "love"
       }
-    }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.944593,
+        "long": -87.636055,
+        "radius": 15
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_20",
+      "question": {
+        "question": "This tree is as tall as _____",
+        "answer": "a medium tree",
+        "options": ["a medium tree", "my love is deep", "the tree next to it", "a 16' tree"]
+      }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.94394,
+        "long": -87.635718,
+        "radius": 15,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.943486,
+        "long": -87.635341,
+        "radius": 15,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_24",
+      "question": {
+        "question": "This is a ____ for ____",
+        "answer": "light, safety",
+        "options": ["light, safety", "home, people", "hospital, health", "guard tower, defence"]
+      }
+    },
   ]
 }
