@@ -339,5 +339,59 @@
         "options": ["light, safety", "home, people", "hospital, health", "guard tower, defence"]
       }
     },
+
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 120,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 100,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 80,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 60,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 40,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 25
+      }
+    },
   ]
 }
