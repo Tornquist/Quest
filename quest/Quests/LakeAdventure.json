@@ -103,5 +103,123 @@
         "answer": "15"
       }
     },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.93964,
+        "long": -87.637048,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.940806,
+        "long": -87.637909,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.941309,
+        "long": -87.638337,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.942187,
+        "long": -87.638456,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.942888,
+        "long": -87.638746,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.943475,
+        "long": -87.639384,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.943866,
+        "long": -87.639778,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.94523,
+        "long": -87.640324,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.945898,
+        "long": -87.640079,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.946966,
+        "long": -87.641253,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.947925,
+        "long": -87.642114,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.947929,
+        "long": -87.641635,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+  {
+      "type": "compass",
+      "destination": {
+        "lat": 41.947893,
+        "long": -87.640006,
+        "radius": 25,
+        "autocomplete": true
+      }
+    }
   ]
 }
