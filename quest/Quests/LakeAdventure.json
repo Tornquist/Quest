@@ -247,6 +247,51 @@
         "question": "Who is protected here?",
         "answer": "Birds"
       }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_17",
+      "question": {
+        "question": "Who practices here?",
+        "answer": "Archery Club",
+        "options": ["Archery Club", "Rowing Team", "Ultimate Frisbee Team", "Birdwatching Club"]
+      }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_18",
+      "question": {
+        "question": "Decode the missing letters",
+        "answer": "Heart"
+      }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.946742,
+        "long": -87.638567,
+        "radius": 15
+      },
+      "question": {
+        "question": "How many paces are there between these trees?",
+        "answer": "7.143526"
+      }
+    },
+
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.946152,
+        "long": -87.63717,
+        "radius": 25
+      },
+      "question": {
+        "question": "What endures all things?",
+        "answer": "love"
+      }
     }
   ]
 }
