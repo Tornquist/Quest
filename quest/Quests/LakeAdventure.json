@@ -70,5 +70,38 @@
         "answer": "Hancock Tower"
       }
     },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.939586,
+        "long": -87.633715,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.940991,
+        "long": -87.634558,
+        "radius": 25,
+        "autocomplete": true
+      },
+      "question": {
+        "question": "How many boats do you see?",
+        "answer": "About 38",
+        "options": ["About 38", "Exactly 37", "Lots", "Too Many", "I don't see any boats"]
+      }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_12",
+      "question": {
+        "question": "How many windows does the building have on this side?",
+        "answer": "15"
+      }
+    },
   ]
 }
