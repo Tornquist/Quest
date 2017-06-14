@@ -145,8 +145,11 @@
       "destination": {
         "lat": 41.942888,
         "long": -87.638746,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "Come sail away come sail away\nCome sail away",
+        "answer": "with me"
       }
     },
     {
@@ -172,8 +175,12 @@
       "destination": {
         "lat": 41.94523,
         "long": -87.640324,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "What is protecting the beach?",
+        "answer": "An Owl",
+        "options": ["An Owl", "The dog owners", "Nothing, it's a wasteland", "Hutzpa"]
       }
     },
     {
@@ -195,6 +202,14 @@
       }
     },
     {
+      "type": "camera",
+      "overlay": "lake_adventure_14",
+      "question": {
+        "question": "_______ Drive",
+        "answer": "Recreation"
+      }
+    },
+    {
       "type": "compass",
       "destination": {
         "lat": 41.947925,
@@ -212,13 +227,25 @@
         "autocomplete": true
       }
     },
-  {
-      "type": "compass",
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_16",
+      "question": {
+        "question": "NO FISHING WITHIN ____ OF ANY DOCK",
+        "answer": "100'",
+        "options": ["100'", "25'", "10'", "1 parsec"]
+      }
+    },
+    {
+      "type": "map",
       "destination": {
         "lat": 41.947893,
         "long": -87.640006,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 50
+      },
+      "question": {
+        "question": "Who is protected here?",
+        "answer": "Birds"
       }
     }
   ]
