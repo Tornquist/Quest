@@ -85,8 +85,7 @@
       "destination": {
         "lat": 41.940991,
         "long": -87.634558,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
       },
       "question": {
         "question": "How many boats do you see?",
