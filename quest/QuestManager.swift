@@ -169,6 +169,7 @@ class QuestManager: QuestManagerDelegate {
             self.mainInterface?.showMessage("Follow the compass")
             self.mainInterface?.set(viewStyle: .compass)
             self.mapInterface?.clearOverlays()
+            self.compassInterface?.set(destination: step.destination)
         case .camera:
             self.mainInterface?.showMessage("Use the camera to find clues")
             self.mainInterface?.set(viewStyle: .camera)
