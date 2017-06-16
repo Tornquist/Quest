@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 protocol CompassViewInterface: class {
-    
+    func set(destination: CLLocationCoordinate2D?)
 }
 
 class CompassView: UIView, CLLocationManagerDelegate, CompassViewInterface {
@@ -177,5 +177,11 @@ class CompassView: UIView, CLLocationManagerDelegate, CompassViewInterface {
     
     func degreesToRadians(_ degrees: Double) -> Double { return degrees * Double.pi / 180.0 }
     func radiansToDegrees(_ radians: Double) -> Double { return radians * 180.0 / Double.pi }
+    
+    // MARK: - CompassViewInterface Delegate Methods
 
+    func set(destination: CLLocationCoordinate2D?) {
+        self.currentDestination = destination
+        self.updateArrow()
+    }
 }

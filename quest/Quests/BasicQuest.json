@@ -79,6 +79,38 @@
         "long": -87.643386,
         "radius": 180
       }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.938420,
+        "long": -87.643411,
+        "radius": 10
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.937472,
+        "long": -87.642349,
+        "radius": 10
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.936171,
+        "long": -87.643647,
+        "radius": 10
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.937432,
+        "long": -87.645793,
+        "radius": 10
+      }
     }
   ]
 }
