@@ -76,8 +76,12 @@
       "destination": {
         "lat": 41.939586,
         "long": -87.633715,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "What lake are you looking at?",
+        "answer": "Lake Michigan",
+        "options": ["Lake Michigan", "Lake Huron", "Lake Erie", "Lake Superior", "Lake Ontario"]
       }
     },
     {
@@ -108,8 +112,11 @@
       "destination": {
         "lat": 41.93964,
         "long": -87.637048,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "I spy with my little eye a pair of blue _____.",
+        "answer": "boat cranes"
       }
     },
     {
@@ -117,8 +124,12 @@
       "destination": {
         "lat": 41.940806,
         "long": -87.637909,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "Which language did the word marina NOT derive from?",
+        "answer": "French",
+        "options": ["Spanish", "Portuguese", "French", "Italian"]
       }
     },
     {
@@ -135,8 +146,12 @@
       "destination": {
         "lat": 41.942187,
         "long": -87.638456,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "What is the name of the largest ship ever built?",
+        "answer": "All of the Above",
+        "options": ["Seawise Giant", "Happy Giant", "Jahre Viking", "Knock Nevis", "All of the Above"]
       }
     },
     {
