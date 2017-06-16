@@ -171,8 +171,12 @@
       "destination": {
         "lat": 41.943475,
         "long": -87.639384,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "In the Old Testament of the King James Bible, how many references are there to ships?",
+        "answer": "37",
+        "options": ["37", "1", "15", "6"]
       }
     },
     {
@@ -180,8 +184,12 @@
       "destination": {
         "lat": 41.943866,
         "long": -87.639778,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question" : {
+        "question": "How long was/is the largest human powered boat?",
+        "answer": "420 ft",
+        "options": ["420 ft", "600 ft", "20 ft", "120 ft"]
       }
     },
     {
@@ -202,8 +210,12 @@
       "destination": {
         "lat": 41.945898,
         "long": -87.640079,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "What plant grew in abundance in the land that became Chicago?",
+        "answer": "Garlic",
+        "options": ["Garlic", "Rice", "Opium (Poppies)", "Grass", "Cherry Tree"]
       }
     },
     {
@@ -228,8 +240,12 @@
       "destination": {
         "lat": 41.947925,
         "long": -87.642114,
-        "radius": 25,
-        "autocomplete": true
+        "radius": 25
+      },
+      "question": {
+        "question": "What is the most fun to swim in?",
+        "answer": "An empty and chlorinated pool",
+        "options": ["An empty and chlorinated pool", "Harbors", "Lakes", "Oceans"]
       }
     },
     {
@@ -283,11 +299,11 @@
     },
 
     {
-      "type": "compass",
+      "type": "map",
       "destination": {
         "lat": 41.946742,
         "long": -87.638567,
-        "radius": 15
+        "radius": 10
       },
       "question": {
         "question": "How many paces are there between these trees?",
@@ -300,7 +316,7 @@
       "destination": {
         "lat": 41.946152,
         "long": -87.63717,
-        "radius": 25
+        "radius": 15
       },
       "question": {
         "question": "What endures all things?",
@@ -322,7 +338,7 @@
       "question": {
         "question": "This tree is as tall as _____",
         "answer": "a medium tree",
-        "options": ["a medium tree", "my love is deep", "the tree next to it", "a 16' tree"]
+        "options": ["a medium tree", "sasquatch", "the tree next to it", "a 16' tree"]
       }
     },
 
@@ -331,8 +347,11 @@
       "destination": {
         "lat": 41.94394,
         "long": -87.635718,
-        "radius": 15,
-        "autocomplete": true
+        "radius": 15
+      },
+      "question": {
+        "question": "What is the most romantic superhero movie?",
+        "answer": "Deadpool"
       }
     },
     {
@@ -340,8 +359,12 @@
       "destination": {
         "lat": 41.943486,
         "long": -87.635341,
-        "radius": 15,
-        "autocomplete": true
+        "radius": 15
+      },
+      "question": {
+        "question": "Is pineapple good on pizza?",
+        "answer": "Yes",
+        "options": ["Yes", "No"]
       }
     },
     {
@@ -359,8 +382,12 @@
       "destination": {
         "lat": 41.942267,
         "long": -87.633393,
-        "radius": 120,
-        "autocomplete": true
+        "radius": 120
+      },
+      "question": {
+        "question": "Who is the star of Brooklyn Nine-Nine?",
+        "answer": "Gina Linetti",
+        "options": ["Gina Linetti", "Charles Boyle", "Jake Peralta", "Terry Jeffords", "Captain Ray Holt", "Amy Santiago"]
       }
     },
     {
@@ -368,8 +395,12 @@
       "destination": {
         "lat": 41.942267,
         "long": -87.633393,
-        "radius": 100,
-        "autocomplete": true
+        "radius": 100
+      },
+      "question": {
+        "question": "What is the best type of Saturday?",
+        "answer": "No plans Saturday!",
+        "options": ["No plans Saturday!"]
       }
     },
     {
@@ -377,8 +408,12 @@
       "destination": {
         "lat": 41.942267,
         "long": -87.633393,
-        "radius": 80,
-        "autocomplete": true
+        "radius": 80
+      },
+      "question": {
+        "question": "What team's colors are black and gold?",
+        "answer": "The Purdue Boilermakers",
+        "options": ["The Purdue Boilermakers", "The St. Olaf Oles", "The Pittsburgh Pirates"]
       }
     },
     {
@@ -386,8 +421,12 @@
       "destination": {
         "lat": 41.942267,
         "long": -87.633393,
-        "radius": 60,
-        "autocomplete": true
+        "radius": 60
+      },
+      "question": {
+        "question": "Random noises are appropriate in ______ situation(s)",
+        "answer": "every",
+        "options": ["every", "some", "outside", "private", "no"]
       }
     },
     {
@@ -395,8 +434,12 @@
       "destination": {
         "lat": 41.942267,
         "long": -87.633393,
-        "radius": 40,
-        "autocomplete": true
+        "radius": 40
+      },
+      "question": {
+        "question": "What activity is a required component of every summer?",
+        "answer": "All of the above",
+        "options": ["All of the above", "Reading outside", "Camping", "Baseball", "Long walks"]
       }
     },
     {
