@@ -29,6 +29,8 @@ class CameraView: UIView, CameraViewInterface {
     var imageLeft: NSLayoutConstraint!
     var imageRight: NSLayoutConstraint!
     
+    var imageZoomSlider: UISlider!
+    
     var visualInsets: UIEdgeInsets = .zero {
         didSet {
             self.imageTop.constant = visualInsets.top
@@ -118,6 +120,26 @@ class CameraView: UIView, CameraViewInterface {
         self.imageLeft = NSLayoutConstraint(item: self.imageView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0)
         self.imageRight = NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: self.imageView, attribute: .right, multiplier: 1, constant: 0)
         self.addConstraints([self.imageTop, self.imageBottom, self.imageLeft, self.imageRight])
+        
+        self.imageZoomSlider = UISlider()
+        self.imageZoomSlider.translatesAutoresizingMaskIntoConstraints = false
+        let sliderLeft = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 16)
+        let sliderRight = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: -16)
+        let sliderBottom = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: -16)
+        self.imageZoomSlider.minimumValue = 1
+        self.imageZoomSlider.setValue(1, animated: false)
+        self.imageZoomSlider.maximumValue = 3
+        self.imageZoomSlider.minimumTrackTintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        self.view.addSubview(self.imageZoomSlider)
+        self.view.addConstraints([sliderLeft, sliderRight, sliderBottom])
+        self.imageZoomSlider.addTarget(self, action: #selector(sliderDidChange), for: .valueChanged)
+    }
+    
+    func sliderDidChange(sender: UISlider) {
+        let constraintConstant = self.view.frame.width * CGFloat(1.0 - sender.value)
+        
+        self.imageLeft.constant = constraintConstant
+        self.imageRight.constant = constraintConstant
     }
     
     // MARK: - Exernal Managment
@@ -135,5 +157,6 @@ class CameraView: UIView, CameraViewInterface {
     func showOverlay(named: String?) {
         self.configureImageView()
         self.imageView.image = named == nil ? nil : UIImage(named: "overlay_\(named!)")
+        self.imageZoomSlider.isHidden = self.imageView.image == nil
     }
 }

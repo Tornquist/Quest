@@ -13,6 +13,10 @@
         "lat": 41.937494,
         "long": -87.643386,
         "radius": 60
+      },
+      "question": {
+        "question": "Marco",
+        "answer": "Polo"
       }
     },
     {

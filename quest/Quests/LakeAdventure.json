@@ -1,0 +1,454 @@
+{
+  "name": "Lake Adventure",
+  "sku": "lake_adventure",
+  "start": {
+    "lat": 41.937861,
+    "long": -87.636966,
+    "radius": 30
+  },
+  "steps": [
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_01",
+      "question": {
+        "question": "How many large rocks are in this planting?",
+        "answer": "2"
+      }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.937726,
+        "long": -87.63624,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_03",
+      "question": {
+        "question": "How many buildings can be seen over the trees?",
+        "answer": "3"
+      }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_05",
+      "question": {
+        "question": "What are the people in the missing frame doing?",
+        "answer": "Kissing",
+        "options": ["Kissing", "Hugging", "#Winning", "That's a building"]
+      }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_08",
+      "question": {
+        "question": "Name the business",
+        "answer": "Herb-N-Juice",
+        "options": ["Herb-N-Juice", "Juice-N-Herb", "Herb-N-Herb", "Juice-N-Juice"]
+      }
+    },
+
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.93887575,
+        "long": -87.634531,
+        "radius": 25
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_09",
+      "question": {
+        "question": "What building is that?",
+        "answer": "Hancock Tower"
+      }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.939586,
+        "long": -87.633715,
+        "radius": 25
+      },
+      "question": {
+        "question": "What lake are you looking at?",
+        "answer": "Lake Michigan",
+        "options": ["Lake Michigan", "Lake Huron", "Lake Erie", "Lake Superior", "Lake Ontario"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.940991,
+        "long": -87.634558,
+        "radius": 25
+      },
+      "question": {
+        "question": "How many boats do you see?",
+        "answer": "About 38",
+        "options": ["About 38", "Exactly 37", "Lots", "Too Many", "I don't see any boats"]
+      }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_12",
+      "question": {
+        "question": "How many windows does the building have on this side?",
+        "answer": "15"
+      }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.93964,
+        "long": -87.637048,
+        "radius": 25
+      },
+      "question": {
+        "question": "I spy with my little eye a pair of blue _____.",
+        "answer": "boat cranes"
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.940806,
+        "long": -87.637909,
+        "radius": 25
+      },
+      "question": {
+        "question": "Which language did the word marina NOT derive from?",
+        "answer": "French",
+        "options": ["Spanish", "Portuguese", "French", "Italian"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.941309,
+        "long": -87.638337,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.942187,
+        "long": -87.638456,
+        "radius": 25
+      },
+      "question": {
+        "question": "What is the name of the largest ship ever built?",
+        "answer": "All of the Above",
+        "options": ["Seawise Giant", "Happy Giant", "Jahre Viking", "Knock Nevis", "All of the Above"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.942888,
+        "long": -87.638746,
+        "radius": 25
+      },
+      "question": {
+        "question": "Come sail away come sail away\nCome sail away",
+        "answer": "with me"
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.943475,
+        "long": -87.639384,
+        "radius": 25
+      },
+      "question": {
+        "question": "In the Old Testament of the King James Bible, how many references are there to ships?",
+        "answer": "37",
+        "options": ["37", "1", "15", "6"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.943866,
+        "long": -87.639778,
+        "radius": 25
+      },
+      "question" : {
+        "question": "How long was/is the largest human powered boat?",
+        "answer": "420 ft",
+        "options": ["420 ft", "600 ft", "20 ft", "120 ft"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.94523,
+        "long": -87.640324,
+        "radius": 25
+      },
+      "question": {
+        "question": "What is protecting the beach?",
+        "answer": "An Owl",
+        "options": ["An Owl", "The dog owners", "Nothing, it's a wasteland", "Hutzpa"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.945898,
+        "long": -87.640079,
+        "radius": 25
+      },
+      "question": {
+        "question": "What plant grew in abundance in the land that became Chicago?",
+        "answer": "Garlic",
+        "options": ["Garlic", "Rice", "Opium (Poppies)", "Grass", "Cherry Tree"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.946966,
+        "long": -87.641253,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_14",
+      "question": {
+        "question": "_______ Drive",
+        "answer": "Recreation"
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.947925,
+        "long": -87.642114,
+        "radius": 25
+      },
+      "question": {
+        "question": "What is the most fun to swim in?",
+        "answer": "An empty and chlorinated pool",
+        "options": ["An empty and chlorinated pool", "Harbors", "Lakes", "Oceans"]
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.947929,
+        "long": -87.641635,
+        "radius": 25,
+        "autocomplete": true
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_16",
+      "question": {
+        "question": "NO FISHING WITHIN ____ OF ANY DOCK",
+        "answer": "100'",
+        "options": ["100'", "25'", "10'", "1 parsec"]
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.947893,
+        "long": -87.640006,
+        "radius": 50
+      },
+      "question": {
+        "question": "Who is protected here?",
+        "answer": "Birds"
+      }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_17",
+      "question": {
+        "question": "Who practices here?",
+        "answer": "Archery Club",
+        "options": ["Archery Club", "Rowing Team", "Ultimate Frisbee Team", "Birdwatching Club"]
+      }
+    },
+
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_18",
+      "question": {
+        "question": "Decode the missing letters",
+        "answer": "Heart"
+      }
+    },
+
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.946742,
+        "long": -87.638567,
+        "radius": 10
+      },
+      "question": {
+        "question": "How many paces are there between these trees?",
+        "answer": "7.143526"
+      }
+    },
+
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.946152,
+        "long": -87.63717,
+        "radius": 15
+      },
+      "question": {
+        "question": "What endures all things?",
+        "answer": "love"
+      }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.944593,
+        "long": -87.636055,
+        "radius": 15
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_20",
+      "question": {
+        "question": "This tree is as tall as _____",
+        "answer": "a medium tree",
+        "options": ["a medium tree", "sasquatch", "the tree next to it", "a 16' tree"]
+      }
+    },
+
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.94394,
+        "long": -87.635718,
+        "radius": 15
+      },
+      "question": {
+        "question": "What is the most romantic superhero movie?",
+        "answer": "Deadpool"
+      }
+    },
+    {
+      "type": "compass",
+      "destination": {
+        "lat": 41.943486,
+        "long": -87.635341,
+        "radius": 15
+      },
+      "question": {
+        "question": "Is pineapple good on pizza?",
+        "answer": "Yes",
+        "options": ["Yes", "No"]
+      }
+    },
+    {
+      "type": "camera",
+      "overlay": "lake_adventure_24",
+      "question": {
+        "question": "This is a ____ for ____",
+        "answer": "light, safety",
+        "options": ["light, safety", "home, people", "hospital, health", "guard tower, defence"]
+      }
+    },
+
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 120
+      },
+      "question": {
+        "question": "Who is the star of Brooklyn Nine-Nine?",
+        "answer": "Gina Linetti",
+        "options": ["Gina Linetti", "Charles Boyle", "Jake Peralta", "Terry Jeffords", "Captain Ray Holt", "Amy Santiago"]
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 100
+      },
+      "question": {
+        "question": "What is the best type of Saturday?",
+        "answer": "No plans Saturday!",
+        "options": ["No plans Saturday!"]
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 80
+      },
+      "question": {
+        "question": "What team's colors are black and gold?",
+        "answer": "The Purdue Boilermakers",
+        "options": ["The Purdue Boilermakers", "The St. Olaf Oles", "The Pittsburgh Pirates"]
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 60
+      },
+      "question": {
+        "question": "Random noises are appropriate in ______ situation(s)",
+        "answer": "every",
+        "options": ["every", "some", "outside", "private", "no"]
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 40
+      },
+      "question": {
+        "question": "What activity is a required component of every summer?",
+        "answer": "All of the above",
+        "options": ["All of the above", "Reading outside", "Camping", "Baseball", "Long walks"]
+      }
+    },
+    {
+      "type": "map",
+      "destination": {
+        "lat": 41.942267,
+        "long": -87.633393,
+        "radius": 25
+      }
+    },
+  ]
+}
