@@ -262,7 +262,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         }
         
         let title = (overlay.title ?? "") ?? ""
-        let index = self.quests.index { (quest) -> Bool in
+        let index = self.quests.firstIndex { (quest) -> Bool in
             return title == quest.sku()
         }
         let isQuest = index != nil

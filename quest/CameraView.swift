@@ -115,17 +115,17 @@ class CameraView: UIView, CameraViewInterface {
         
         self.view.addSubview(imageView)
         
-        self.imageTop = NSLayoutConstraint(item: self.imageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+        self.imageTop = NSLayoutConstraint(item: self.imageView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
         self.imageBottom = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: 0)
-        self.imageLeft = NSLayoutConstraint(item: self.imageView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0)
+        self.imageLeft = NSLayoutConstraint(item: self.imageView!, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0)
         self.imageRight = NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: self.imageView, attribute: .right, multiplier: 1, constant: 0)
         self.addConstraints([self.imageTop, self.imageBottom, self.imageLeft, self.imageRight])
         
         self.imageZoomSlider = UISlider()
         self.imageZoomSlider.translatesAutoresizingMaskIntoConstraints = false
-        let sliderLeft = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 16)
-        let sliderRight = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: -16)
-        let sliderBottom = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: -16)
+        let sliderLeft = NSLayoutConstraint(item: self.imageZoomSlider!, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 16)
+        let sliderRight = NSLayoutConstraint(item: self.imageZoomSlider!, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: -16)
+        let sliderBottom = NSLayoutConstraint(item: self.imageZoomSlider!, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: -16)
         self.imageZoomSlider.minimumValue = 1
         self.imageZoomSlider.setValue(1, animated: false)
         self.imageZoomSlider.maximumValue = 3

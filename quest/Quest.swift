@@ -209,6 +209,6 @@ class Quest: QuestProtocol {
             return nil
         }
         
-        return self.steps.index(where: { $0 == currentStep! })
+        return self.steps.firstIndex(where: { $0 == currentStep! })
     }
 }

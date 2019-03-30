@@ -94,7 +94,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.startButton.setTitle("START QUEST", for: .normal)
         self.startButton.setTitleColor(.white, for: .normal)
         self.startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        let heightConstraint = NSLayoutConstraint(item: self.startButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+        let heightConstraint = NSLayoutConstraint(item: self.startButton!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
         heightConstraint.priority = UILayoutPriority(rawValue: 999)
         self.startButton.addConstraint(heightConstraint)
         self.startButton.layer.cornerRadius = 8
