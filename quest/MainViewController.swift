@@ -83,7 +83,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.messageLabel.text = "Walk to a quest marker to begin"
         self.messageLabel.numberOfLines = 0
         self.messageLabel.textColor = .white
-        self.messageLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightMedium)
+        self.messageLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
         self.messageLabel.textAlignment = .center
         self.stackView.addArrangedSubview(self.messageLabel)
         self.messageLabel.isHidden = false
@@ -95,7 +95,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.startButton.setTitleColor(.white, for: .normal)
         self.startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         let heightConstraint = NSLayoutConstraint(item: self.startButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
-        heightConstraint.priority = 999
+        heightConstraint.priority = UILayoutPriority(rawValue: 999)
         self.startButton.addConstraint(heightConstraint)
         self.startButton.layer.cornerRadius = 8
         self.stackView.addArrangedSubview(self.startButton)
@@ -224,7 +224,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     // Override Gestures
     
-    func swipedDown(_ sender: UISwipeGestureRecognizer) {
+    @objc func swipedDown(_ sender: UISwipeGestureRecognizer) {
         // TODO: Disable for final release
         
         self.questManager.showDebug(on: self)

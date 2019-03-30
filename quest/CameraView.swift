@@ -65,7 +65,7 @@ class CameraView: UIView, CameraViewInterface {
     func configureNib() {
         self.view = loadViewFromNib()
         self.view.frame = bounds
-        self.view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        self.view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         self.addSubview(self.view)
     }
     
@@ -84,9 +84,9 @@ class CameraView: UIView, CameraViewInterface {
         self.view.backgroundColor = .clear
         
         session = AVCaptureSession()
-        session.sessionPreset = AVCaptureSessionPresetHigh
+        session.sessionPreset = AVCaptureSession.Preset.high
         
-        device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        device = AVCaptureDevice.default(for: .video)
         
         do {
             input = try AVCaptureDeviceInput(device: device)
@@ -94,7 +94,7 @@ class CameraView: UIView, CameraViewInterface {
             
             previewLayer = AVCaptureVideoPreviewLayer(session: session)
             previewLayer.frame = self.view.bounds
-            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             self.view.layer.addSublayer(previewLayer)
         } catch { }
         
@@ -135,7 +135,7 @@ class CameraView: UIView, CameraViewInterface {
         self.imageZoomSlider.addTarget(self, action: #selector(sliderDidChange), for: .valueChanged)
     }
     
-    func sliderDidChange(sender: UISlider) {
+    @objc func sliderDidChange(sender: UISlider) {
         let constraintConstant = self.view.frame.width * CGFloat(1.0 - sender.value)
         
         self.imageLeft.constant = constraintConstant
