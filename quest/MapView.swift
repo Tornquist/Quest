@@ -69,7 +69,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     func configureNib() {
         self.view = loadViewFromNib()
         self.view.frame = bounds
-        self.view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        self.view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         self.addSubview(self.view)
     }
     
@@ -104,7 +104,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
     
     // MARK: - Events
     
-    func didDragMap(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func didDragMap(gestureRecognizer: UIPanGestureRecognizer) {
         self.centerButton.allowCenter = true
     }
     
@@ -155,8 +155,8 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
             longitude: region.center.longitude + (region.span.longitudeDelta/2.0)
         )
         
-        let topLeftMapPoint = MKMapPointForCoordinate(topLeft)
-        let bottomRightMapPoint = MKMapPointForCoordinate(bottomRight)
+        let topLeftMapPoint = MKMapPoint.init(topLeft)
+        let bottomRightMapPoint = MKMapPoint.init(bottomRight)
         
         let origin = MKMapPoint(x: topLeftMapPoint.x,
                                 y: topLeftMapPoint.y)
@@ -191,14 +191,14 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         
         if newStep || completeChanged {
             if self.questStepOverlay != nil {
-                self.mapView.remove(self.questStepOverlay!)
+                self.mapView.removeOverlay(self.questStepOverlay!)
             }
             
             self.questStepOverlay = self.overlayFor(questStep: questStep)
             self.questStepCloseEnough = questStep.closeEnough
             
             if self.questStepOverlay != nil {
-                self.mapView.add(self.questStepOverlay!)
+                self.mapView.addOverlay(self.questStepOverlay!)
             }
         }
     }
@@ -214,7 +214,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
             self.canStartQuest.append(quest.canStart())
             self.questOverlays.append(circle)
             
-            self.mapView.add(circle)
+            self.mapView.addOverlay(circle)
         }
     }
     
@@ -229,8 +229,8 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
             let circle = overlayFor(quest: quest)
             
             let overlay = self.questOverlays[index]
-            self.mapView.remove(overlay)
-            self.mapView.add(circle)
+            self.mapView.removeOverlay(overlay)
+            self.mapView.addOverlay(circle)
             
             self.questOverlays[index] = circle
         }
@@ -262,7 +262,7 @@ class MapView: UIView, MKMapViewDelegate, UIGestureRecognizerDelegate, MapCenter
         }
         
         let title = (overlay.title ?? "") ?? ""
-        let index = self.quests.index { (quest) -> Bool in
+        let index = self.quests.firstIndex { (quest) -> Bool in
             return title == quest.sku()
         }
         let isQuest = index != nil

@@ -52,7 +52,7 @@ class CompassView: UIView, CLLocationManagerDelegate, CompassViewInterface {
     func configureNib() {
         self.view = loadViewFromNib()
         self.view.frame = bounds
-        self.view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        self.view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         self.addSubview(self.view)
     }
     

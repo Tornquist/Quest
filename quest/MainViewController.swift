@@ -38,6 +38,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     @IBOutlet weak var closeButton: UIButton!
     
+    @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var stackView: UIStackView!
     var messageLabel: UILabel!
     var startButton: UIButton!
@@ -76,6 +77,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     // MARK: - View Management
     
     func configureView() {
+        if self.blurView != nil {
+            let bottomSpace = NSLayoutConstraint(item: self.blurView!, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
+            self.view.addConstraint(bottomSpace)
+        }
+        
         self.mapView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
         self.cameraView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
         
@@ -83,7 +89,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.messageLabel.text = "Walk to a quest marker to begin"
         self.messageLabel.numberOfLines = 0
         self.messageLabel.textColor = .white
-        self.messageLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightMedium)
+        self.messageLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
         self.messageLabel.textAlignment = .center
         self.stackView.addArrangedSubview(self.messageLabel)
         self.messageLabel.isHidden = false
@@ -94,8 +100,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
         self.startButton.setTitle("START QUEST", for: .normal)
         self.startButton.setTitleColor(.white, for: .normal)
         self.startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        let heightConstraint = NSLayoutConstraint(item: self.startButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
-        heightConstraint.priority = 999
+        let heightConstraint = NSLayoutConstraint(item: self.startButton!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+        heightConstraint.priority = UILayoutPriority(rawValue: 999)
         self.startButton.addConstraint(heightConstraint)
         self.startButton.layer.cornerRadius = 8
         self.stackView.addArrangedSubview(self.startButton)
@@ -224,7 +230,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     // Override Gestures
     
-    func swipedDown(_ sender: UISwipeGestureRecognizer) {
+    @objc func swipedDown(_ sender: UISwipeGestureRecognizer) {
         // TODO: Disable for final release
         
         self.questManager.showDebug(on: self)

@@ -75,18 +75,18 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
         self.needsLocation = locationStatus != CLAuthorizationStatus.authorizedWhenInUse
         self.deniedLocation = locationStatus == CLAuthorizationStatus.denied
         
-        let cameraStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let cameraStatus = AVCaptureDevice.authorizationStatus(for: .video)
         self.needsCamera = cameraStatus != AVAuthorizationStatus.authorized
         self.deniedCamera = cameraStatus == AVAuthorizationStatus.denied
     }
     
     func authPrompt() {
         if self.showSettings() {
-            UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
         } else if self.needsLocation {
             locationManager.requestWhenInUseAuthorization()
         } else if self.needsCamera {
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { granted in
+            AVCaptureDevice.requestAccess(for: .video) { granted in
                 DispatchQueue.main.async {
                     self.authHandler(success: granted)
                 }
@@ -110,4 +110,3 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 }
-

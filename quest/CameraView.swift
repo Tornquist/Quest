@@ -65,7 +65,7 @@ class CameraView: UIView, CameraViewInterface {
     func configureNib() {
         self.view = loadViewFromNib()
         self.view.frame = bounds
-        self.view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        self.view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         self.addSubview(self.view)
     }
     
@@ -84,17 +84,21 @@ class CameraView: UIView, CameraViewInterface {
         self.view.backgroundColor = .clear
         
         session = AVCaptureSession()
-        session.sessionPreset = AVCaptureSessionPresetHigh
+        session.sessionPreset = AVCaptureSession.Preset.high
         
-        device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        device = AVCaptureDevice.default(for: .video)
         
         do {
+            guard device != nil else {
+                throw NSError(domain: "ShortCircuitBlock", code: 000, userInfo: nil)
+            }
+            
             input = try AVCaptureDeviceInput(device: device)
             session.addInput(input)
             
             previewLayer = AVCaptureVideoPreviewLayer(session: session)
             previewLayer.frame = self.view.bounds
-            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             self.view.layer.addSublayer(previewLayer)
         } catch { }
         
@@ -115,17 +119,17 @@ class CameraView: UIView, CameraViewInterface {
         
         self.view.addSubview(imageView)
         
-        self.imageTop = NSLayoutConstraint(item: self.imageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+        self.imageTop = NSLayoutConstraint(item: self.imageView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
         self.imageBottom = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: 0)
-        self.imageLeft = NSLayoutConstraint(item: self.imageView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0)
+        self.imageLeft = NSLayoutConstraint(item: self.imageView!, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0)
         self.imageRight = NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: self.imageView, attribute: .right, multiplier: 1, constant: 0)
         self.addConstraints([self.imageTop, self.imageBottom, self.imageLeft, self.imageRight])
         
         self.imageZoomSlider = UISlider()
         self.imageZoomSlider.translatesAutoresizingMaskIntoConstraints = false
-        let sliderLeft = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 16)
-        let sliderRight = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: -16)
-        let sliderBottom = NSLayoutConstraint(item: self.imageZoomSlider, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: -16)
+        let sliderLeft = NSLayoutConstraint(item: self.imageZoomSlider!, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 16)
+        let sliderRight = NSLayoutConstraint(item: self.imageZoomSlider!, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: -16)
+        let sliderBottom = NSLayoutConstraint(item: self.imageZoomSlider!, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .bottom, multiplier: 1, constant: -16)
         self.imageZoomSlider.minimumValue = 1
         self.imageZoomSlider.setValue(1, animated: false)
         self.imageZoomSlider.maximumValue = 3
@@ -135,7 +139,7 @@ class CameraView: UIView, CameraViewInterface {
         self.imageZoomSlider.addTarget(self, action: #selector(sliderDidChange), for: .valueChanged)
     }
     
-    func sliderDidChange(sender: UISlider) {
+    @objc func sliderDidChange(sender: UISlider) {
         let constraintConstant = self.view.frame.width * CGFloat(1.0 - sender.value)
         
         self.imageLeft.constant = constraintConstant
