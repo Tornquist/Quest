@@ -38,6 +38,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     
     @IBOutlet weak var closeButton: UIButton!
     
+    @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var stackView: UIStackView!
     var messageLabel: UILabel!
     var startButton: UIButton!
@@ -76,6 +77,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainViewC
     // MARK: - View Management
     
     func configureView() {
+        if self.blurView != nil {
+            let bottomSpace = NSLayoutConstraint(item: self.blurView!, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
+            self.view.addConstraint(bottomSpace)
+        }
+        
         self.mapView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
         self.cameraView.visualInsets = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
         

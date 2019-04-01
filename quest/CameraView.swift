@@ -89,6 +89,10 @@ class CameraView: UIView, CameraViewInterface {
         device = AVCaptureDevice.default(for: .video)
         
         do {
+            guard device != nil else {
+                throw NSError(domain: "ShortCircuitBlock", code: 000, userInfo: nil)
+            }
+            
             input = try AVCaptureDeviceInput(device: device)
             session.addInput(input)
             
